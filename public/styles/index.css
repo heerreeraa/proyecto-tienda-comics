@@ -13,6 +13,7 @@ html {
 }
 body {
   background: black;
+  overflow: hidden;
 }
 
 .text {
@@ -74,6 +75,7 @@ a {
   padding: 50px 20px;
   border-radius: 20px;
   text-align: center;
+  overflow: auto;
 }
 .header {
   display: flex;
@@ -231,7 +233,7 @@ hr {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.75),
+    rgb(255 255 255 / 75%),
     rgba(0, 0, 0, 0)
   );
 }
@@ -681,7 +683,7 @@ canvas {
   width: 100%;
   z-index: -1;
 }
-.wrapper {
+.wrapper2 {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
