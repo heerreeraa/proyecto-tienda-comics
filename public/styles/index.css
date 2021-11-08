@@ -13,7 +13,6 @@ html {
 }
 body {
   background: black;
-  overflow: hidden;
 }
 
 .text {
@@ -75,7 +74,6 @@ a {
   padding: 50px 20px;
   border-radius: 20px;
   text-align: center;
-  overflow: auto;
 }
 .header {
   display: flex;
