@@ -64,7 +64,7 @@ body {
 }
 .parte-superior {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 .gallery img {
   width: 100%;
@@ -543,22 +543,21 @@ hr {
   }
 }
 /* NAVBAR MENU */
-.r-link{
+.r-link {
   display: var(--rLinkDisplay, inline-flex) !important;
 }
 
-.r-link[href]{
+.r-link[href] {
   color: var(--rLinkColor) !important;
   text-decoration: var(--rLinkTextDecoration, none) !important;
 }
 
-.r-list{
+.r-list {
   padding-left: var(--rListPaddingLeft, 0) !important;
   margin-top: var(--rListMarginTop, 0) !important;
   margin-bottom: var(--rListMarginBottom, 0) !important;
   list-style: var(--rListListStyle, none) !important;
 }
-
 
 /*
 =====
@@ -566,11 +565,11 @@ CORE STYLES
 =====
 */
 
-.menu{
+.menu {
   --rLinkColor: var(--menuLinkColor, currentColor);
 }
 
-.menu__link{
+.menu__link {
   display: var(--menuLinkDisplay, block);
 }
 
@@ -578,8 +577,9 @@ CORE STYLES
 focus state 
 */
 
-.menu__link:focus{
-  outline: var(--menuLinkOutlineWidth, 2px) solid var(--menuLinkOutlineColor, currentColor);
+.menu__link:focus {
+  outline: var(--menuLinkOutlineWidth, 2px) solid
+    var(--menuLinkOutlineColor, currentColor);
   outline-offset: var(--menuLinkOutlineOffset);
 }
 
@@ -587,8 +587,8 @@ focus state
 fading siblings
 */
 
-.menu:hover .menu__link:not(:hover){
-  --rLinkColor: var(--menuLinkColorUnactive, rgba(22, 22, 22, .35));
+.menu:hover .menu__link:not(:hover) {
+  --rLinkColor: var(--menuLinkColorUnactive, rgba(22, 22, 22, 0.35));
 }
 
 /*
@@ -597,17 +597,21 @@ PRESENTATION STYLES
 =====
 */
 
-.menu{
+.menu {
   background-color: var(--menuBackgroundColor, #f0f0f0);
-  box-shadow: var(--menuBoxShadow, 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24));
+  box-shadow: var(
+    --menuBoxShadow,
+    0 1px 3px 0 rgba(0, 0, 0, 0.12),
+    0 1px 2px 0 rgba(0, 0, 0, 0.24)
+  );
 }
 
-.menu__list{
-  display: flex;  
+.menu__list {
+  display: flex;
 }
 
-.menu__link{
-  padding: var(--menuLinkPadding, 1.5rem 2.5rem);
+.menu__link {
+  padding: var(--menuLinkPadding, 0.8rem 0.8rem);
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -618,42 +622,42 @@ TEXT UNDERLINED
 =====
 */
 
-.text-underlined{
+.text-underlined {
   position: relative;
   overflow: hidden;
 
   will-change: color;
-  transition: color .25s ease-out;  
+  transition: color 0.25s ease-out;
 }
 
-.text-underlined::before, 
-.text-underlined::after{
+.text-underlined::before,
+.text-underlined::after {
   content: "";
   width: 0;
   height: 3px;
   background-color: var(--textUnderlinedLineColor, currentColor);
 
   will-change: width;
-  transition: width .1s ease-out;
+  transition: width 0.1s ease-out;
 
   position: absolute;
   bottom: 0;
 }
 
-.text-underlined::before{
+.text-underlined::before {
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
 }
 
-.text-underlined::after{
+.text-underlined::after {
   right: 50%;
-  transform: translateX(50%); 
+  transform: translateX(50%);
 }
 
-.text-underlined:hover::before, 
-.text-underlined:hover::after{
+.text-underlined:hover::before,
+.text-underlined:hover::after {
   width: 100%;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 /*
@@ -662,11 +666,11 @@ SETTINGS
 =====
 */
 
-.page__custom-settings{
+.page__custom-settings {
   --menuBackgroundColor: #6c5ce7;
   --menuLinkColor: #fff;
   --menuLinkColorUnactive: #241c69;
-  --menuLinkOutlineOffset: -.5rem; 
+  --menuLinkOutlineOffset: -0.5rem;
 }
 
 /*
@@ -675,18 +679,15 @@ DEMO
 =====
 */
 
-
-
-.page__menu:nth-child(n+2){
+.page__menu:nth-child(n + 2) {
   margin-top: 3rem;
 }
 
-
-.substack{
-  border:1px solid #EEE; 
+.substack {
+  border: 1px solid #eee;
   background-color: #fff;
   width: 100%;
   max-width: 480px;
   height: 280px;
-  margin: 1rem auto;;
+  margin: 1rem auto;
 }
