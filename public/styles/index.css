@@ -759,3 +759,13 @@ canvas {
     margin-top: -107px;
   }
 }
+#presentacion-principal {
+  margin-top: 2%;
+}
+#presentacion-principal h2 {
+  color: white;
+}
+#presentacion-principal p {
+  margin-top: 2%;
+  color: #01ff17;
+}
