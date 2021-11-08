@@ -44,8 +44,52 @@
                 <!-- END CONTENIDO PÁGINA CLIENTES -->
 
                 <!-- CONTENIDO PÁGINA MAIN -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div id="div-btn-cerrar">
+                            <span class="close">&times;</span>
+                        </div>
+                        <div id="content-modal">
+                            <div>
+                                <div>
+                                    <form>
+                                        <label>DNI</label>
+                                        <input id="inp-dni" type="text" name="dni" />
+                                    </form>
+                                </div>
+                                <div>
+                                    <form>
+                                        <label>Nombre</label>
+                                        <input type="text" name="nombre" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <form>
+                                        <label>Apellido</label>
+                                        <input type="text" name="apellido" />
+                                    </form>
+                                </div>
+                                <div>
+                                    <form>
+                                        <label>Telefono</label>
+                                        <input type="text" name="tel" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="btn-insertar">
+                            <button>AGREGAR</button>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="btn-agregar">
-                    <button>AGREGAR</button>
+                    <button id="btn-Agregar">AGREGAR</button>
                 </div>
                 <div class="gallery">
                     <div id="photo0" class="item">
@@ -147,6 +191,7 @@
     </section>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <script src="js/matrix.js"></script>
+    <script src="js/frontclientes.js"></script>
 </body>
 
 </html>
