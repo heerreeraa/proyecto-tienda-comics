@@ -691,6 +691,7 @@ canvas {
   font-size: 0;
 }
 
+/* INICIO PÁGINA MAIN */
 .hero-item,
 .standard-item {
   background-position: center center;
@@ -759,3 +760,14 @@ canvas {
     margin-top: -107px;
   }
 }
+/* END PÁGINA MAIN */
+
+/* INICIO PÁGINA CLIENTES */
+
+/* END PÁGINA CLIENTES */
+
+/* INICIO PÁGINA PRODUCTOS */
+#inicio-productos{
+  color: #15BE1A;
+}
+/* END PÁGINA PRODUCTOS */
