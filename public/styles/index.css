@@ -74,6 +74,7 @@ a {
   padding: 50px 20px;
   border-radius: 20px;
   text-align: center;
+  margin: 2%;
 }
 .header {
   display: flex;
@@ -704,7 +705,7 @@ canvas {
 }
 
 .hero-item {
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/divinity-ori-sin.jpg");
+  background-image: url("https://i0.wp.com/hipertextual.com/wp-content/uploads/2015/02/dc-comics-universe.jpg?fit=1280%2C800&ssl=1");
 }
 
 .standard-item:nth-child(2) {
@@ -716,7 +717,7 @@ canvas {
 }
 
 .standard-item:nth-child(4) {
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/dishonored-large.jpg");
+  background-image: url("https://super-ficcion.com/wp-content/uploads/2020/06/hipertextual-marvel-revela-sera-final-universo-marvel-2019314666-scaled.jpg");
 }
 
 @supports (display: grid) {
