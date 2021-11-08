@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;900&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap");
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+/* FUENTES */
+  /* Fuente título */
+  @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -200,6 +200,8 @@ form ion-icon {
   line-height: 1.1;
   max-inline-size: 15ch;
   margin: auto;
+  margin-right: 25px;
+  margin-top: 20px;
   background-image: linear-gradient(
     to right,
     #17d2e0,
@@ -212,6 +214,7 @@ form ion-icon {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-family: 'Audiowide', cursive;
   background-size: 300%;
   background-position: -100%;
   animation: animatedText 5s infinite alternate-reverse;
