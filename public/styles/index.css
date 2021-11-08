@@ -12,29 +12,9 @@ html {
   font-size: 100%;
 }
 body {
-  background: linear-gradient(
-    -45deg,
-    #17d2e0,
-    #479ae2,
-    #6f78eb,
-    #8f5ff0,
-    #c42ff4,
-    #f72afe
-  );
-  background-size: 400% 400%;
-  animation: gradient 4s ease infinite;
+  background: black;
 }
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 .text {
   text-transform: uppercase;
   background-image: linear-gradient(
@@ -203,12 +183,12 @@ form ion-icon {
   margin-top: 6px;
   background-image: linear-gradient(
     to right,
-    #17d2e0,
-    #479ae2,
-    #6f78eb,
-    #8f5ff0,
-    #c42ff4,
-    #f72afe
+    #01ff17,
+    #71e741,
+    #67e370,
+    #92ec89,
+    #b6f0b5,
+    #e2eee1
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -669,9 +649,9 @@ SETTINGS
 */
 
 .page__custom-settings {
-  --menuBackgroundColor: #6c5ce7;
+  --menuBackgroundColor: #15be1a;
   --menuLinkColor: #fff;
-  --menuLinkColorUnactive: #241c69;
+  --menuLinkColorUnactive: #333433;
   --menuLinkOutlineOffset: -0.5rem;
 }
 
