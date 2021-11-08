@@ -1,4 +1,4 @@
-+// Initialising the canvas
+// Initialising the canvas
 var canvas = document.querySelector("canvas"),
   ctx = canvas.getContext("2d");
 
