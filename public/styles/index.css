@@ -1,6 +1,6 @@
 /* FUENTES */
-  /* Fuente título */
-  @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+/* Fuente título */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
 * {
   margin: 0;
@@ -12,28 +12,7 @@ html {
   font-size: 100%;
 }
 body {
-  background: linear-gradient(
-    -45deg,
-    #17d2e0,
-    #479ae2,
-    #6f78eb,
-    #8f5ff0,
-    #c42ff4,
-    #f72afe
-  );
-  background-size: 400% 400%;
-  animation: gradient 4s ease infinite;
-}
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: black;
 }
 .text {
   text-transform: uppercase;
@@ -78,7 +57,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 100px 0;
 }
 
 a {
@@ -87,7 +65,7 @@ a {
   letter-spacing: 1px;
 }
 .container {
-  background-color: white;
+  background-color: #434343c4;
   width: 90%;
   max-width: 900px;
   margin: 0 auto;
@@ -204,17 +182,17 @@ form ion-icon {
   margin-top: 6px;
   background-image: linear-gradient(
     to right,
-    #17d2e0,
-    #479ae2,
-    #6f78eb,
-    #8f5ff0,
-    #c42ff4,
-    #f72afe
+    #38ff00,
+    #82e569,
+    #99f175,
+    #63e265,
+    #79e891,
+    #a3e68d
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-family: 'Audiowide', cursive;
+  font-family: "Audiowide", cursive;
   background-size: 300%;
   background-position: -100%;
   animation: animatedText 5s infinite alternate-reverse;
@@ -670,17 +648,11 @@ SETTINGS
 */
 
 .page__custom-settings {
-  --menuBackgroundColor: #6c5ce7;
+  --menuBackgroundColor: #0ba52d;
   --menuLinkColor: #fff;
-  --menuLinkColorUnactive: #241c69;
+  --menuLinkColorUnactive: #40eb9c;
   --menuLinkOutlineOffset: -0.5rem;
 }
-
-/*
-=====
-DEMO
-=====
-*/
 
 .page__menu:nth-child(n + 2) {
   margin-top: 3rem;
@@ -693,4 +665,12 @@ DEMO
   max-width: 480px;
   height: 280px;
   margin: 1rem auto;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
