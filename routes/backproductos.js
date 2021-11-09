@@ -44,6 +44,8 @@ router.get("/", function (request, response) {
 // MODAL DATOS DEL PRODUCTO CLICKADO  -->
 router.put("/buscarNombre", function (request, response) {
   let variablenombre = request.body.nombre;
+  let db = request.app.locals.db;
+
   db.collection("productos")
     .find({ nombre: variablenombre })
     .toArray(function (err, datos) {

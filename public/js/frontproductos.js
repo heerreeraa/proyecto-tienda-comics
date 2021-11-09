@@ -21,7 +21,8 @@ document
 
 // INSERTAR PRODUCTO EN LOCAL -->
 document
-  .querySelector("#btn-insertar-producto").addEventListener("click", function (event) {
+  .querySelector("#btn-insertar-producto")
+  .addEventListener("click", function (event) {
     event.preventDefault();
     alert("Producto insertado correctamente pá!");
 
@@ -30,7 +31,7 @@ document
 
     let producto = {
       nombre: nombre,
-      precio: precio
+      precio: precio,
     };
     console.log(producto);
     let body = JSON.stringify(producto);
@@ -55,7 +56,7 @@ document
 
 // MOSTRAR PRODUCTO INSERTADO  -->
 function cargarProductos() {
-  fetch("/Productos/", {
+  fetch("/productos/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +70,7 @@ function cargarProductos() {
 
       res.forEach((photo) => {
         const item = document.createElement("div");
-        item.id = `${photo.nombre}`;
+        item.id = `${photo.Nombre}`;
         item.classList.add("item");
 
         item.innerHTML = `
@@ -97,7 +98,7 @@ function generarModalProduct() {
   });
 }
 
-+function cargarModalProducto() {
+function cargarModalProducto() {
   const item = document.createElement("div");
   item.className = `modal-content`;
 
@@ -128,7 +129,6 @@ function generarModalProduct() {
   document.querySelector("#myModal").appendChild(item);
 }
 
-
 function cargarModal(nombre) {
   let producto = {
     nombre: nombre,
@@ -136,7 +136,7 @@ function cargarModal(nombre) {
   console.log(producto);
   let body = JSON.stringify(producto);
 
-  fetch("/prductos/buscarNombre", {
+  fetch("/productos/buscarNombre", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -148,8 +148,12 @@ function cargarModal(nombre) {
     })
     .then(function (res) {
       console.log(res);
-      document.querySelector("input[name='nombre-producto']").value = `${res[0].Nombre}`;
-      document.querySelector("input[name='precio-producto']").value = `${res[0].Precio}`;
+      document.querySelector(
+        "input[name='nombre-producto']"
+      ).value = `${res[0].Nombre}`;
+      document.querySelector(
+        "input[name='precio-producto']"
+      ).value = `${res[0].Precio}`;
     });
 }
 cargarProductos();
