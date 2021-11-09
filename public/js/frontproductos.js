@@ -27,7 +27,7 @@ document
     alert("Producto insertado correctamente pá!");
 
     let nombre = document.querySelector("input[name='nombre-producto']").value;
-    let precio = document.querySelector("input[name='precio-producto']").value;    
+    let precio = document.querySelector("input[name='precio-producto']").value;
     let imagen = document.querySelector("input[name='imagen-producto']").value;
 
     let producto = {
@@ -131,8 +131,8 @@ function cargarModalProducto() {
         </div>
     </div>
     <div>
-    <button class="btn-modificar">MODIFICAR</button>
-    <button class="btn-eliminar">ELIMINAR</button>    
+    <button id="btn-modificar" class="btn-modificar">MODIFICAR</button>
+    <button id="btn-eliminar" class="btn-eliminar">ELIMINAR</button>    
     </div> 
     `;
   document.querySelector("#myModal").appendChild(item);
@@ -151,6 +151,39 @@ function cargarModalProducto() {
       location.reload();
     }
   };
+  document
+    .querySelector("#btn-modificar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+
+      let dni = document.querySelector("input[name='dni']").value;
+      let nombre = document.querySelector("input[name='nombre']").value;
+      let apellido = document.querySelector("input[name='apellido']").value;
+      let tel = document.querySelector("input[name='tel']").value;
+      let cliente = {
+        dni: dni,
+        nombre: nombre,
+        apellido: apellido,
+        tel: tel,
+      };
+      console.log(cliente);
+      let body = JSON.stringify(cliente);
+
+      fetch("/clientes/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      location.reload();
+    });
 }
 
 function cargarModal(nombre) {
@@ -183,7 +216,6 @@ function cargarModal(nombre) {
       ).value = `${res[0].Imagen}`;
     });
 }
-// <-- GENERAR MODAL EDITAR/ELIMINAR PRODUCTO 
-
+// <-- GENERAR MODAL EDITAR/ELIMINAR PRODUCTO
 
 cargarProductos();
