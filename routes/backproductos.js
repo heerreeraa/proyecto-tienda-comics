@@ -33,10 +33,10 @@ router.get("/", function (request, response) {
     .find()
     .toArray(function (err, datos) {
       if (err != undefined) {
-        // console.log(err);
+        console.log(err);
         response.send({ mensaje: "error: " + err });
       } else {
-        // console.log(datos);
+        console.log(datos);
         response.send(datos);
       }
     });
@@ -61,22 +61,21 @@ router.put("/buscarNombre", function (request, response) {
     });
 });
 // <-- MODAL DATOS DEL PRODUCTO CLICKADO
+
 router.put("/", function (request, response) {
-  let variabledni = request.body.dni;
   let variablenombre = request.body.nombre;
-  let variableapellido = request.body.apellido;
-  let variabletel = request.body.tel;
+  let variableprecio = request.body.dni;
+  let variableurl = request.body.apellido;
   let db = request.app.locals.db;
   var newvalues = {
     $set: {
-      Nombre: variablenombre,
-      Apellido: variableapellido,
-      Telefono: variabletel,
+      Precio: variableprecio,
+      Imagen: variableurl,
     },
   };
   db.collection("productos").updateOne(
     {
-      DNI: variabledni,
+      Nombre: variablenombre,
     },
     newvalues,
     function (err, respuesta) {

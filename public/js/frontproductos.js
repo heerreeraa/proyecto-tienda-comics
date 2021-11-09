@@ -156,20 +156,25 @@ function cargarModalProducto() {
     .addEventListener("click", function (event) {
       event.preventDefault();
 
-      let dni = document.querySelector("input[name='dni']").value;
-      let nombre = document.querySelector("input[name='nombre']").value;
-      let apellido = document.querySelector("input[name='apellido']").value;
-      let tel = document.querySelector("input[name='tel']").value;
-      let cliente = {
-        dni: dni,
-        nombre: nombre,
-        apellido: apellido,
-        tel: tel,
-      };
-      console.log(cliente);
-      let body = JSON.stringify(cliente);
+      let nombre = document.querySelector(
+        "input[name='nombre-producto']"
+      ).value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
 
-      fetch("/clientes/", {
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
+
+      fetch("/productos/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -182,7 +187,6 @@ function cargarModalProducto() {
         .then(function (res) {
           console.log(res);
         });
-      location.reload();
     });
 }
 
