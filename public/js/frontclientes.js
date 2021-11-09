@@ -94,11 +94,36 @@ function generarModalClient() {
     el.addEventListener("click", function () {
       alert(this.id);
       modal.style.display = "block";
+      cargarModal(this.id);
     });
   });
 }
 
 function cargarModal(dni) {
-  document.querySelector("input[name='nombre']").innerHTML;
+  let cliente = {
+    dni: dni,
+  };
+  console.log(cliente);
+  let body = JSON.stringify(cliente);
+
+  fetch("/clientes/buscarDni", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body,
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+      document.querySelector("input[name='nombre']").value = `${res[0].Nombre}`;
+      document.querySelector(
+        "input[name='apellido']"
+      ).value = `${res[0].Apellido}`;
+      document.querySelector("input[name='dni']").value = `${res[0].DNI}`;
+      document.querySelector("input[name='tel']").value = `${res[0].Telefono}`;
+    });
 }
 cargarClientes();

@@ -43,10 +43,11 @@ router.get("/", function (request, response) {
     });
 });
 
-router.get("/buscarDni", function (request, response) {
+router.put("/buscarDni", function (request, response) {
+  let variabledni = request.body.dni;
   let db = request.app.locals.db;
   db.collection("clientes")
-    .find({})
+    .find({ DNI: variabledni })
     .toArray(function (err, datos) {
       if (err != undefined) {
         console.log(err);
