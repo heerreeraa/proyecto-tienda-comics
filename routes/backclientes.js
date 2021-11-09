@@ -58,4 +58,54 @@ router.put("/buscarDni", function (request, response) {
       }
     });
 });
+router.put("/", function (request, response) {
+  let variabledni = request.body.dni;
+  let variablenombre = request.body.nombre;
+  let variableapellido = request.body.apellido;
+  let variabletel = request.body.tel;
+  let db = request.app.locals.db;
+  var newvalues = {
+    $set: {
+      Nombre: variablenombre,
+      Apellido: variableapellido,
+      Telefono: variabletel,
+    },
+  };
+  db.collection("clientes").updateOne(
+    {
+      DNI: variabledni,
+    },
+    newvalues,
+    function (err, respuesta) {
+      if (err !== undefined) {
+        console.log(err), res.send({ mensaje: "Ha habido un error. " + err });
+      } else {
+        console.log(respuesta);
+        console.log("Modificado correctamente");
+      }
+    }
+  );
+});
+router.delete("/", function (request, response) {
+  let variabledni = request.body.dni;
+  let variablenombre = request.body.nombre;
+  let variableapellido = request.body.apellido;
+  let variabletel = request.body.tel;
+  let db = request.app.locals.db;
+
+  db.collection("clientes").deleteOne(
+    {
+      DNI: variabledni,
+    },
+    function (err, respuesta) {
+      if (err !== undefined) {
+        console.log(err), res.send({ mensaje: "Ha habido un error. " + err });
+      } else {
+        console.log(respuesta);
+        console.log("Modificado correctamente");
+      }
+    }
+  );
+});
+
 module.exports = router;

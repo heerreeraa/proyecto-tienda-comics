@@ -21,6 +21,7 @@ document
     event.preventDefault();
     modal.style.display = "block";
   });
+
 document
   .querySelector("#btn-insertar")
   .addEventListener("click", function (event) {
@@ -89,9 +90,11 @@ function cargarClientes() {
 function generarModalClient() {
   document.querySelectorAll(".item").forEach(function (el) {
     el.addEventListener("click", function () {
-      alert(this.id);
       modal.style.display = "block";
       cargarModal(this.id);
+
+      updateCliente(this.id);
+
       document.querySelector("#myModal").innerHTML = "";
       cargarModalCliente();
     });
@@ -111,7 +114,7 @@ function cargarModalCliente() {
           <div>
               <form>
                   <label>DNI</label>
-                  <input id="inp-dni" type="text" name="dni" />
+                  <input id="inp-dni" type="text" name="dni" readonly/>
               </form>
           </div>
           <div>
@@ -137,8 +140,8 @@ function cargarModalCliente() {
       </div>
   </div>
   <div class="div-insert">
-      <button id="btn-modificar">MODIFICAR</button>
-      <button id="btn-eliminar">ELIMINAR</button>
+      <button id="btn-modificar"class="btn-modificar">MODIFICAR</button>
+      <button id="btn-eliminar"class="btn-eliminar">ELIMINAR</button>
   </div>
     `;
   document.querySelector("#myModal").appendChild(item);
@@ -151,14 +154,82 @@ function cargarModalCliente() {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
+    location.reload();
   };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      location.reload();
     }
   };
+  document
+    .querySelector("#btn-modificar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+
+      let dni = document.querySelector("input[name='dni']").value;
+      let nombre = document.querySelector("input[name='nombre']").value;
+      let apellido = document.querySelector("input[name='apellido']").value;
+      let tel = document.querySelector("input[name='tel']").value;
+      let cliente = {
+        dni: dni,
+        nombre: nombre,
+        apellido: apellido,
+        tel: tel,
+      };
+      console.log(cliente);
+      let body = JSON.stringify(cliente);
+
+      fetch("/clientes/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      location.reload();
+    });
+  document
+    .querySelector("#btn-eliminar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+
+      let dni = document.querySelector("input[name='dni']").value;
+      let nombre = document.querySelector("input[name='nombre']").value;
+      let apellido = document.querySelector("input[name='apellido']").value;
+      let tel = document.querySelector("input[name='tel']").value;
+      let cliente = {
+        dni: dni,
+        nombre: nombre,
+        apellido: apellido,
+        tel: tel,
+      };
+      console.log(cliente);
+      let body = JSON.stringify(cliente);
+
+      fetch("/clientes/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      location.reload();
+    });
 }
 
 function cargarModal(dni) {
@@ -188,4 +259,35 @@ function cargarModal(dni) {
       document.querySelector("input[name='tel']").value = `${res[0].Telefono}`;
     });
 }
+
+function cargarModal(dni) {
+  let cliente = {
+    dni: dni,
+  };
+  console.log(cliente);
+  let body = JSON.stringify(cliente);
+
+  fetch("/clientes/buscarDni", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body,
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+      document.querySelector("input[name='nombre']").value = `${res[0].Nombre}`;
+      document.querySelector(
+        "input[name='apellido']"
+      ).value = `${res[0].Apellido}`;
+      document.querySelector("input[name='dni']").value = `${res[0].DNI}`;
+      document.querySelector("input[name='tel']").value = `${res[0].Telefono}`;
+    });
+}
+function clickModificar() {}
+
+function updateCliente() {}
 cargarClientes();
