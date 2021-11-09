@@ -23,39 +23,38 @@ document
   .addEventListener("click", function (event) {
     event.preventDefault();
     modal.style.display = "block";
-
-    // fetch("/burger", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-    //   .then(function (res) {
-    //     console.log(res.hamburguesas);
-
-    //     console.log("HOLA PERRO");
-    //   });
   });
 document
   .querySelector("#btn-insertar")
   .addEventListener("click", function (event) {
     event.preventDefault();
     alert("Insertado pa");
-    // fetch("/burger", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-    //   .then(function (res) {
-    //     console.log(res.hamburguesas);
 
-    //     console.log("HOLA PERRO");
-    //   });
+    let nombre = document.querySelector("input[name='nombre']").value;
+    let apellido = document.querySelector("input[name='apellido']").value;
+    let dni = document.querySelector("input[name='dni']").value;
+    let tel = document.querySelector("input[name='tel']").value;
+
+    let cliente = {
+      nombre: nombre,
+      apellido: apellido,
+      dni: dni,
+      tel: tel,
+    };
+    console.log(cliente);
+    let body = JSON.stringify(cliente);
+
+    fetch("/clientes/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (res) {
+        console.log(res);
+      });
   });
