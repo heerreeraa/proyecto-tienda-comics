@@ -190,6 +190,44 @@ function cargarModalProducto() {
         });
       location.reload();
     });
+  document
+    .querySelector("#btn-eliminar-producto")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert(1);
+      let nombre = document.querySelector(
+        "input[name='nombre-producto']"
+      ).value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
+
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
+
+      fetch("/productos/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      location.reload();
+    });
 }
 
 function cargarModal(nombre) {

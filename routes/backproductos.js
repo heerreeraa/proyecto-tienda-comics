@@ -88,4 +88,23 @@ router.put("/", function (request, response) {
     }
   );
 });
+router.delete("/", function (request, response) {
+  let variablenombre = request.body.nombre;
+
+  let db = request.app.locals.db;
+
+  db.collection("productos").deleteOne(
+    {
+      Nombre: variablenombre,
+    },
+    function (err, respuesta) {
+      if (err !== undefined) {
+        console.log(err), res.send({ mensaje: "Ha habido un error. " + err });
+      } else {
+        console.log(respuesta);
+        console.log("Borrado correctamente");
+      }
+    }
+  );
+});
 module.exports = router;
