@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", function (req, res) {
-  let variablenombre = req.body.nombre-producto;
-  let variableprecio = req.body.precio-producto;
+  let variablenombre = req.body.nombre;
+  let variableprecio = req.body.precio;
   let db = req.app.locals.db;
 
   db.collection("productos").insertOne(
     {
       Nombre: variablenombre,
-      Precio: variableprecio
+      Precio: variableprecio,
     },
     function (err, respuesta) {
       if (err !== undefined) {
