@@ -86,6 +86,19 @@ function cargarClientes() {
           `;
         document.querySelector(".gallery").appendChild(item);
       });
+      generarModalClient();
     });
+}
+function generarModalClient() {
+  document.querySelectorAll(".item").forEach(function (el) {
+    el.addEventListener("click", function () {
+      alert(this.id);
+      modal.style.display = "block";
+    });
+  });
+}
+
+function cargarModal(dni) {
+  document.querySelector("input[name='nombre']").innerHTML;
 }
 cargarClientes();
