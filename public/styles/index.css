@@ -911,4 +911,15 @@ form label {
 #inicio-productos {
   color: #15be1a;
 }
+.btn-agregar{
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 40px;
+  background-color: #15be1a;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 15px;
+}
 /* END PÁGINA PRODUCTOS */
