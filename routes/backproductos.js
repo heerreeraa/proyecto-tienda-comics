@@ -47,7 +47,7 @@ router.put("/buscarNombre", function (request, response) {
   let db = request.app.locals.db;
 
   db.collection("productos")
-    .find({ nombre: variablenombre })
+    .find({ Nombre: variablenombre })
     .toArray(function (err, datos) {
       if (err != undefined) {
         console.log(err);
