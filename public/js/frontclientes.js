@@ -57,6 +57,8 @@ document
       .then(function (res) {
         console.log(res);
       });
+    modal.style.display = "none";
+    location.reload();
   });
 function cargarClientes() {
   fetch("/clientes/", {
@@ -78,6 +80,7 @@ function cargarClientes() {
 
         item.innerHTML = `
           <a target="_blank">
+            <p>${photo.Nombre}</p>
             <img class="img-zoom" src="./styles/user.jpg">
           </a>
           `;
