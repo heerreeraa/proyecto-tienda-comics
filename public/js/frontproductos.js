@@ -96,6 +96,7 @@ function generarModalProduct() {
       cargarModal(this.id);
       document.querySelector("#myModal").innerHTML = "";
       cargarModalProducto();
+      eliminarProductos();
     });
   });
 }
@@ -131,8 +132,8 @@ function cargarModalProducto() {
         </div>
     </div>
     <div>
-    <button id="btn-modificar" class="btn-modificar">MODIFICAR</button>
-    <button id="btn-eliminar" class="btn-eliminar">ELIMINAR</button>    
+    <button id="btn-modificar-producto">MODIFICAR</button>
+    <button id="btn-eliminar-producto">ELIMINAR</button>    
     </div> 
     `;
   document.querySelector("#myModal").appendChild(item);
@@ -216,6 +217,39 @@ function cargarModal(nombre) {
       ).value = `${res[0].Imagen}`;
     });
 }
-// <-- GENERAR MODAL EDITAR/ELIMINAR PRODUCTO
+// <-- GENERAR MODAL EDITAR PRODUCTO
+
+// ELIMINAR PRODUCTO -->
+function eliminarProductos(){
+document.querySelector("#btn-eliminar-producto").addEventListener("click", function (event) {
+      event.preventDefault();
+      let nombre = document.querySelector("input[name='nombre-producto]").value;
+      let precio = document.querySelector("input[name='precio-producto']").value;
+      let imagen = document.querySelector("input[name='imagen-producto']").value;
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
+
+      fetch("/productos/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      location.reload();
+    });
+  }
+// <-- ELIMINAR PRODUCTO
 
 cargarProductos();
