@@ -1,4 +1,4 @@
-// END FUNCIONAMIENTO DEL MODAL
+// FUNCIONAMIENTO DEL MODAL -->
     var modal = document.querySelector("#myModal");
     var span = document.getElementsByClassName("close")[0];
 
@@ -17,9 +17,9 @@
         event.preventDefault();
         modal.style.display = "block";
     });
-// END FUNCIONAMIENTO DEL MODAL
+// <-- END FUNCIONAMIENTO DEL MODAL
 
-// INSERTAR EN LOCAL -->
+// INSERTAR PRODUCTO EN LOCAL -->
 document
   .querySelector("#btn-insertar-producto").addEventListener("click", function (event) {
     event.preventDefault();
@@ -48,8 +48,42 @@ document
       .then(function (res) {
         console.log(res);
       });
+      modal.style.display = "none";
+      location.reload();
   });
-// <-- END INSERTAR EN LOCAL
+// <-- END INSERTAR PRODCUTO EN LOCAL
+
+// MOSTRAR PRODUCTO INSERTADO  -->
+  function cargarProductos() {
+    fetch("/Productos/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (res) {
+        console.log(res);
+
+        res.forEach((photo) => {
+          const item = document.createElement("div");
+          item.id = `${photo.nombre}`;
+          item.classList.add("item");
+
+          item.innerHTML = `
+            <a target="_blank">
+              <p>${photo.Nombre} ${photo.Precio}</p>
+              <img class="img-zoom" src="./styles/comicDefault.png" style="width:300px; heigth:350px;">
+            </a>
+            `;
+          document.querySelector(".gallery").appendChild(item);
+        });
+      });
+  }
+  cargarProductos();
+// <-- MOSTRAR PRODUCTO INSERTADO
 
 // GenerateHTML(productos) {
 //     productos.forEach((producto) => {
