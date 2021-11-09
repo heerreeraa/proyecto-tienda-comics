@@ -27,11 +27,13 @@ document
     alert("Producto insertado correctamente pá!");
 
     let nombre = document.querySelector("input[name='nombre-producto']").value;
-    let precio = document.querySelector("input[name='precio-producto']").value;
+    let precio = document.querySelector("input[name='precio-producto']").value;    
+    let imagen = document.querySelector("input[name='imagen-producto']").value;
 
     let producto = {
       nombre: nombre,
       precio: precio,
+      imagen: imagen,
     };
     console.log(producto);
     let body = JSON.stringify(producto);
@@ -76,7 +78,7 @@ function cargarProductos() {
         item.innerHTML = `
             <a target="_blank">
               <p>${photo.Nombre} ${photo.Precio}</p>
-              <img class="img-zoom" src="./styles/comicDefault.png" style="width:300px; heigth:350px;">
+              <img class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
             </a>
             `;
         document.querySelector(".gallery").appendChild(item);
@@ -86,10 +88,10 @@ function cargarProductos() {
 }
 // <-- MOSTRAR PRODUCTO INSERTADO
 
+// GENERAR MODAL EDITAR/ELIMINAR PRODUCTO -->
 function generarModalProduct() {
   document.querySelectorAll(".item").forEach(function (el) {
     el.addEventListener("click", function () {
-      alert(this.id);
       modal.style.display = "block";
       cargarModal(this.id);
       document.querySelector("#myModal").innerHTML = "";
@@ -111,7 +113,7 @@ function cargarModalProducto() {
             <div>
                 <form>
                     <label>Nombre</label>
-                    <input type="text" name="nombre-producto" />
+                    <input type="text" name="nombre-producto" readonly />
                 </form>
             </div>
             <div>
@@ -120,29 +122,33 @@ function cargarModalProducto() {
                     <input type="text" name="precio-producto" />
                 </form>
             </div>
+            <div>
+            <form>
+                <label>Imagen</label>
+                <input type="text" name="imagen-producto" />
+            </form>
+        </div>
         </div>
     </div>
     <div>
-    <button id="btn-modificar">MODIFICAR</button>
-    <button id="btn-eliminar">ELIMINAR</button>    
+    <button class="btn-modificar">MODIFICAR</button>
+    <button class="btn-eliminar">ELIMINAR</button>    
     </div> 
     `;
   document.querySelector("#myModal").appendChild(item);
 
-  // Get the modal
   var modal = document.querySelector("#myModal");
-
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
-  // When the user clicks on <span> (x), close the modal
+
   span.onclick = function () {
     modal.style.display = "none";
+    location.reload();
   };
 
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      location.reload();
     }
   };
 }
@@ -172,6 +178,12 @@ function cargarModal(nombre) {
       document.querySelector(
         "input[name='precio-producto']"
       ).value = `${res[0].Precio}`;
+      document.querySelector(
+        "input[name='imagen-producto']"
+      ).value = `${res[0].Imagen}`;
     });
 }
+// <-- GENERAR MODAL EDITAR/ELIMINAR PRODUCTO 
+
+
 cargarProductos();

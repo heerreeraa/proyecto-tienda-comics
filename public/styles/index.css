@@ -923,3 +923,42 @@ form label {
   border-radius: 15px;
 }
 /* END PÁGINA PRODUCTOS */
+
+/* BOTONES MODAL -->*/
+#btn-insertar-producto{
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 30px;
+  background-color: #15be1a;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+}
+.btn-modificar{
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 30px;
+  background-color: #15be1a;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+}
+.btn-eliminar{
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 30px;
+  background-color: #15be1a;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+}
+/* <-- END BOTONES MODAL */
