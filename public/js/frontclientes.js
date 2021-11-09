@@ -95,8 +95,58 @@ function generarModalClient() {
       alert(this.id);
       modal.style.display = "block";
       cargarModal(this.id);
+      document.querySelector("#myModal").innerHTML = "";
+      cargarModalCliente();
     });
   });
+}
+
+function cargarModalCliente() {
+  const item = document.createElement("div");
+  item.className = `modal-content`;
+
+  item.innerHTML = `
+  <div class="modal-content">
+  <div id="div-btn-cerrar">
+      <span class="close">&times;</span>
+  </div>
+  <div id="content-modal">
+      <div class="div-modal1">
+          <div>
+              <form>
+                  <label>DNI</label>
+                  <input id="inp-dni" type="text" name="dni" />
+              </form>
+          </div>
+          <div>
+              <form>
+                  <label>Nombre</label>
+                  <input type="text" name="nombre" />
+              </form>
+          </div>
+      </div>
+      <div class="div-modal2">
+          <div>
+              <form>
+                  <label>Apellido</label>
+                  <input type="text" name="apellido" />
+              </form>
+          </div>
+          <div>
+              <form>
+                  <label>Telefono</label>
+                  <input type="text" name="tel" />
+              </form>
+          </div>
+      </div>
+  </div>
+  <div class="div-insert">
+      <button id="btn-modificar">MODIFICAR</button>
+      <button id="btn-eliminar">ELIMINAR</button>
+  </div>
+</div>
+    `;
+  document.querySelector("#myModal").appendChild(item);
 }
 
 function cargarModal(dni) {

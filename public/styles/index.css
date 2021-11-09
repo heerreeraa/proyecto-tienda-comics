@@ -810,6 +810,7 @@ canvas {
 
 .item:hover {
   box-shadow: 0px 0px 20px 3px #ffffff42;
+  cursor: pointer;
 }
 .item:nth-last-child(1) {
   margin-bottom: 0;
