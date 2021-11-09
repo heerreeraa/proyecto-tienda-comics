@@ -153,10 +153,10 @@ function cargarModalProducto() {
     }
   };
   document
-    .querySelector("#btn-modificar")
+    .querySelector("#btn-modificar-producto")
     .addEventListener("click", function (event) {
       event.preventDefault();
-
+      alert(1);
       let nombre = document.querySelector(
         "input[name='nombre-producto']"
       ).value;
@@ -188,6 +188,7 @@ function cargarModalProducto() {
         .then(function (res) {
           console.log(res);
         });
+      location.reload();
     });
 }
 
@@ -224,12 +225,18 @@ function cargarModal(nombre) {
 // <-- GENERAR MODAL EDITAR PRODUCTO
 
 // ELIMINAR PRODUCTO -->
-function eliminarProductos(){
-document.querySelector("#btn-eliminar-producto").addEventListener("click", function (event) {
+function eliminarProductos() {
+  document
+    .querySelector("#btn-eliminar-producto")
+    .addEventListener("click", function (event) {
       event.preventDefault();
       let nombre = document.querySelector("input[name='nombre-producto]").value;
-      let precio = document.querySelector("input[name='precio-producto']").value;
-      let imagen = document.querySelector("input[name='imagen-producto']").value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
       let producto = {
         nombre: nombre,
         precio: precio,
@@ -253,7 +260,7 @@ document.querySelector("#btn-eliminar-producto").addEventListener("click", funct
         });
       location.reload();
     });
-  }
+}
 // <-- ELIMINAR PRODUCTO
 
 cargarProductos();

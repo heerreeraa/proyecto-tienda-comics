@@ -64,8 +64,8 @@ router.put("/buscarNombre", function (request, response) {
 
 router.put("/", function (request, response) {
   let variablenombre = request.body.nombre;
-  let variableprecio = request.body.dni;
-  let variableurl = request.body.apellido;
+  let variableprecio = request.body.precio;
+  let variableurl = request.body.imagen;
   let db = request.app.locals.db;
   var newvalues = {
     $set: {
