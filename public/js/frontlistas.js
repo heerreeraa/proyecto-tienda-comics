@@ -1,5 +1,5 @@
-function cargarClientes() {
-    fetch("/clientes/", {
+function cargarClientesSelect() {
+    fetch("/listas/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -11,18 +11,13 @@ function cargarClientes() {
       .then(function (res) {
         console.log(res);
   
-        res.forEach((photo) => {
-          const item = document.createElement("div");
-          item.id = `${photo.DNI}`;
-          item.classList.add("item");
+        res.forEach((sel) => {
+          const item = document.createElement("option");
+          item.id = `${sel.Nombre}`;
+          item.classList.add("option-cliente");
   
-          item.innerHTML = `
-            <a target="_blank">
-              <p>${photo.Nombre}</p>
-              <img class="img-zoom" src="./styles/user.jpg">
-            </a>
-            `;
-          document.querySelector(".gallery").appendChild(item);
+          item.innerHTML = `${sel.Nombre}`;
+          document.querySelector(".select-usuario-ventas").appendChild(item);
         });
         generarModalClient();
       });
