@@ -1,6 +1,7 @@
 /* FUENTES */
-/* Fuente título */
-@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+  /* Fuente título */
+  @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+/* END FUENTES */
 
 * {
   margin: 0;
@@ -924,6 +925,64 @@ form label {
 }
 /* END PÁGINA PRODUCTOS */
 
+/* PÁGINA LISTAS -->*/
+  #div-mas-menos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  #contenido-listas{
+    margin-top: 4%;
+    margin-bottom: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .box-listas{
+    background-color: #191a198a;
+    color: #15be1a;
+    border-radius: 15px;
+    width: 20%;
+    height: 50%;
+    margin: 30px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #div-mas-vendidos{
+    display: flex;
+    flex-direction: column;
+  }
+  #div-menos-vendidos{
+    display: flex;
+    flex-direction: column;
+  }
+  #div-compras-usuario{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+  }
+  #div-porcentaje-ventas{
+    width: 45%;
+  }
+  .titulos-box-listas{
+    margin-bottom: 1%;
+  }
+  #select-usuario-ventas{
+    border: #15be1a 2px solid;
+    background-color: #333433;
+    color: #15be1a;
+    border-radius: 5px;
+    margin-top: 1%;
+    height: 40%;
+    width: 50%;
+    text-align: center;
+  }
+/* <-- END PÁGINA LISTAS */
+
 /* BOTONES MODAL -->*/
 #btn-insertar-producto{
   margin-top: 15px;
@@ -951,6 +1010,7 @@ form label {
 }
 .btn-eliminar{
   margin-top: 15px;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
   width: 120px;
