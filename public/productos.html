@@ -18,6 +18,7 @@
         <div class="container">
             <div class="header">
                 <div class="parte-superior">
+                    <button class="openbtn" onclick="openNav()">☰ CESTA</button>
                     <div class="logo">
                         <h1 id="titulo-principal">ANIME SF</h1>
                     </div>
@@ -40,6 +41,13 @@
             </div>
             <div id="contenido-productos" class="main-part">
                 <br><br><br><br>
+                <div id="mySidepanel" class="sidepanel">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
                 <div id="myModal" class="modal">
                     <div class="modal-content">
                         <div id="div-btn-cerrar">
@@ -82,7 +90,7 @@
                     <br>
                 </div>
                 <!-- BOTON AGREGAR -->
-                <div id="id-btn-agregar" >
+                <div id="id-btn-agregar">
                     <button id="btn-agregar-producto" class="btn-agregar">AGREGAR</button>
                 </div>
                 <!-- MODAL DEL BOTON AGREGAR -->
@@ -90,7 +98,7 @@
 
                 <!-- PRODUCTOS INSERTADOS -->
                 <div id="galeria-productos" class="gallery">
-                   <!-- AQUI SE GENERAN LOS PRODUCTOS -->
+                    <!-- AQUI SE GENERAN LOS PRODUCTOS -->
                 </div>
                 <!-- END PRODUCTOS INSERTADOS -->
             </div>
@@ -158,12 +166,12 @@
                     </div>
                 </div>
             </div>
-            <!-- END FOOTER -->
         </div>
     </section>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <script src="js/matrix.js"></script>
     <script src="js/frontproductos.js"></script>
+    <script src="js/cesta.js"></script>
 </body>
 
 </html>
