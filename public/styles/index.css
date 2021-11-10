@@ -988,7 +988,7 @@ form label {
   .titulos-box-listas{
     margin-bottom: 1%;
   }
-  #select-usuario-ventas{
+  .select-usuario-ventas{
     border: #15be1a 2px solid;
     background-color: #333433;
     color: #15be1a;
