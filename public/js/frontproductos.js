@@ -320,12 +320,12 @@ arrayProductos = arrayProductosLocalParseada;
 
 if (arrayProductos == null) {
   arrayProductos = [0];
+  localStorage.setItem("arrayProductos", JSON.stringify(arrayProductos));
 }
+
 function añadirCesta() {
   document.querySelectorAll(".boton-carrito img").forEach(function (el) {
     el.addEventListener("click", function () {
-      alert(this.id);
-
       let idImg = this.id;
 
       arrayProductos.push(`${idImg}`);
@@ -335,14 +335,16 @@ function añadirCesta() {
 
       console.log("Array js:" + arrayProductos);
       console.log("Array local: " + arrayProductosLocalParseada.length);
-      console.log(1);
+      vaciarCesta();
+      crearCesta();
+      cargarCesta();
+      cargarClientes();
     });
   });
 }
 function eliminarCesta() {
   document.querySelectorAll(".btn-carrito img").forEach(function (el) {
     el.addEventListener("click", function () {
-      alert(this.id);
       let idImg = this.id;
       let index = arrayProductos.indexOf(`${idImg}`);
       if (index > -1) {
@@ -353,6 +355,10 @@ function eliminarCesta() {
       localStorage.setItem("arrayProductos", arrayObjetoFotos);
       console.log(localStorage.getItem("arrayProductos"));
       console.log(arrayProductos);
+      vaciarCesta();
+      crearCesta();
+      cargarCesta();
+      cargarClientes();
     });
   });
 }
@@ -372,7 +378,7 @@ function cargarClientes() {
       res.forEach((photo) => {
         const item = document.createElement("option");
         item.id = `${photo.Nombre}`;
-
+        item.value = `${photo.Nombre}`;
         item.innerHTML = `${photo.Nombre}`;
         document.querySelector(".select-clientes-ventas").appendChild(item);
       });
@@ -404,10 +410,102 @@ function cargarCesta() {
     document.querySelector(`#divProd${num2}`).appendChild(a);
     document.querySelector(`#divProd${num2}`).appendChild(btn);
     num2++;
-    console.log(producto);
   }
+  eliminarProdCesta();
 }
 
+function vaciarCesta() {
+  document.querySelector("#mySidepanel").innerHTML = "";
+}
+function crearCesta() {
+  document.querySelector("#mySidepanel").innerHTML = `
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <a href="#">Cesta</a>
+                    <select name="" class="select-clientes-ventas">
+                        <option value="" selected disabled hidden>Seleccionar Cliente</option>
+                    </select>
+                    <button class="btn-finalizar">FINALIZAR</button>
+  `;
+}
+function finalizarPedido() {
+  document
+    .querySelector(".btn-finalizar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      let arrayProductos2 = [];
+      arrayProductosLocal = localStorage.getItem("arrayProductos");
+      arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
+      console.log(arrayProductosLocalParseada);
+      arrayProductos2 = arrayProductosLocalParseada;
+
+      if (arrayProductos2 == null) {
+        arrayProductos2 = [0];
+      }
+
+      var nombreCliente = document.querySelector(
+        ".select-clientes-ventas"
+      ).value;
+      let venta = {
+        nombreCliente: nombreCliente,
+        arrayProductos2: arrayProductos2,
+      };
+      console.log(venta);
+      alert(venta);
+      let body = JSON.stringify(venta);
+
+      fetch("/productos/venta", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      arrayProductos = [0];
+      localStorage.removeItem("arrayProductos");
+      arrayObjetoFotos = JSON.stringify(arrayProductos);
+      localStorage.setItem("arrayProductos", arrayObjetoFotos);
+      console.log(localStorage.getItem("arrayProductos"));
+      console.log(arrayProductos);
+      vaciarCesta();
+      crearCesta();
+      cargarCesta();
+      cargarClientes();
+    });
+}
+function eliminarProdCesta() {
+  document
+    .querySelectorAll(".div-productos-carro button")
+    .forEach(function (el) {
+      el.addEventListener("click", function () {
+        if (confirm("Estas seguro que deseas eliminarlo de la cesta?")) {
+          // Do something!
+          let idImg = this.id;
+          let index = arrayProductos.indexOf(`${idImg}`);
+          if (index > -1) {
+            arrayProductos.splice(index, 1);
+          }
+          localStorage.removeItem("arrayProductos");
+          arrayObjetoFotos = JSON.stringify(arrayProductos);
+          localStorage.setItem("arrayProductos", arrayObjetoFotos);
+          console.log(localStorage.getItem("arrayProductos"));
+          console.log(arrayProductos);
+        } else {
+          // Do nothing!
+        }
+        vaciarCesta();
+        crearCesta();
+        cargarCesta();
+        cargarClientes();
+      });
+    });
+}
 cargarProductos();
 cargarClientes();
 cargarCesta();
+finalizarPedido();
