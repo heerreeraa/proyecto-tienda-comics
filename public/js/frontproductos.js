@@ -1,3 +1,4 @@
+let num = 0;
 // FUNCIONAMIENTO DEL MODAL -->
 var modal = document.querySelector("#myModal");
 var span = document.getElementsByClassName("close")[0];
@@ -78,19 +79,27 @@ function cargarProductos() {
         item.innerHTML = `
             <a target="_blank">
               <p>${photo.Nombre} ${photo.Precio}</p>
-              <img class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
             </a>
             `;
         document.querySelector(".gallery").appendChild(item);
       });
       generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
     });
 }
 // <-- MOSTRAR PRODUCTO INSERTADO
 
 // GENERAR MODAL EDITAR/ELIMINAR PRODUCTO -->
 function generarModalProduct() {
-  document.querySelectorAll(".item").forEach(function (el) {
+  document.querySelectorAll(".item .img-zoom").forEach(function (el) {
     el.addEventListener("click", function () {
       modal.style.display = "block";
       cargarModal(this.id);
@@ -301,4 +310,48 @@ function eliminarProductos() {
 }
 // <-- ELIMINAR PRODUCTO
 
+this.arrayFotos = [];
+this.arrayFotosLocal = localStorage.getItem("arrayFotos");
+this.arrayFotosLocalParseada = JSON.parse(arrayFotosLocal);
+console.log(arrayFotosLocalParseada);
+arrayFotos = arrayFotosLocalParseada;
+
+if (arrayFotos == null) {
+  arrayFotos = [0];
+}
+function añadirCesta() {
+  document.querySelectorAll(".boton-carrito img").forEach(function (el) {
+    el.addEventListener("click", function () {
+      alert(this.id);
+
+      let idImg = this.id;
+
+      arrayFotos.push(`${idImg}`);
+      localStorage.removeItem("arrayFotos");
+      arrayObjetoFotos = JSON.stringify(arrayFotos);
+      localStorage.setItem("arrayFotos", arrayObjetoFotos);
+
+      console.log("Array js:" + arrayFotos);
+      console.log("Array local: " + arrayFotosLocalParseada.length);
+      console.log(1);
+    });
+  });
+}
+function eliminarCesta() {
+  document.querySelectorAll(".btn-carrito img").forEach(function (el) {
+    el.addEventListener("click", function () {
+      alert(this.id);
+      let idImg = this.id;
+      let index = arrayFotos.indexOf(`${idImg}`);
+      if (index > -1) {
+        arrayFotos.splice(index, 1);
+      }
+      localStorage.removeItem("arrayFotos");
+      arrayObjetoFotos = JSON.stringify(arrayFotos);
+      localStorage.setItem("arrayFotos", arrayObjetoFotos);
+      console.log(localStorage.getItem("arrayFotos"));
+      console.log(arrayFotos);
+    });
+  });
+}
 cargarProductos();
