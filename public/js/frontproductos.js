@@ -197,6 +197,7 @@ function cargarModalProducto() {
         .then(function (res) {
           console.log(res);
         });
+      cargarCesta();
       location.reload();
     });
   document
@@ -235,6 +236,7 @@ function cargarModalProducto() {
         .then(function (res) {
           console.log(res);
         });
+      cargarCesta();
       location.reload();
     });
 }
@@ -376,5 +378,36 @@ function cargarClientes() {
       });
     });
 }
+let num2 = 0;
+function cargarCesta() {
+  let arrayProductos = [];
+  arrayProductosLocal = localStorage.getItem("arrayProductos");
+  arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
+  console.log(arrayProductosLocalParseada);
+  arrayProductos = arrayProductosLocalParseada;
+
+  if (arrayProductos == null) {
+    arrayProductos = [0];
+  }
+  for (let c = 1; c < arrayProductos.length; c++) {
+    let item = document.createElement("div");
+    item.id = `divProd${num2}`;
+    item.className = "div-productos-carro";
+
+    let a = document.createElement("a");
+    a.innerHTML = `${arrayProductos[c]}`;
+
+    let btn = document.createElement("button");
+    btn.id = `${arrayProductos[c]}`;
+    btn.innerHTML = "X";
+    document.querySelector("#mySidepanel").appendChild(item);
+    document.querySelector(`#divProd${num2}`).appendChild(a);
+    document.querySelector(`#divProd${num2}`).appendChild(btn);
+    num2++;
+    console.log(producto);
+  }
+}
+
 cargarProductos();
 cargarClientes();
+cargarCesta();
