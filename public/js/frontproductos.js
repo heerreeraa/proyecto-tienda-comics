@@ -310,14 +310,14 @@ function eliminarProductos() {
 }
 // <-- ELIMINAR PRODUCTO
 
-this.arrayFotos = [];
-this.arrayFotosLocal = localStorage.getItem("arrayFotos");
-this.arrayFotosLocalParseada = JSON.parse(arrayFotosLocal);
-console.log(arrayFotosLocalParseada);
-arrayFotos = arrayFotosLocalParseada;
+this.arrayProductos = [];
+this.arrayProductosLocal = localStorage.getItem("arrayProductos");
+this.arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
+console.log(arrayProductosLocalParseada);
+arrayProductos = arrayProductosLocalParseada;
 
-if (arrayFotos == null) {
-  arrayFotos = [0];
+if (arrayProductos == null) {
+  arrayProductos = [0];
 }
 function añadirCesta() {
   document.querySelectorAll(".boton-carrito img").forEach(function (el) {
@@ -326,13 +326,13 @@ function añadirCesta() {
 
       let idImg = this.id;
 
-      arrayFotos.push(`${idImg}`);
-      localStorage.removeItem("arrayFotos");
-      arrayObjetoFotos = JSON.stringify(arrayFotos);
-      localStorage.setItem("arrayFotos", arrayObjetoFotos);
+      arrayProductos.push(`${idImg}`);
+      localStorage.removeItem("arrayProductos");
+      arrayObjetoFotos = JSON.stringify(arrayProductos);
+      localStorage.setItem("arrayProductos", arrayObjetoFotos);
 
-      console.log("Array js:" + arrayFotos);
-      console.log("Array local: " + arrayFotosLocalParseada.length);
+      console.log("Array js:" + arrayProductos);
+      console.log("Array local: " + arrayProductosLocalParseada.length);
       console.log(1);
     });
   });
@@ -342,15 +342,15 @@ function eliminarCesta() {
     el.addEventListener("click", function () {
       alert(this.id);
       let idImg = this.id;
-      let index = arrayFotos.indexOf(`${idImg}`);
+      let index = arrayProductos.indexOf(`${idImg}`);
       if (index > -1) {
-        arrayFotos.splice(index, 1);
+        arrayProductos.splice(index, 1);
       }
-      localStorage.removeItem("arrayFotos");
-      arrayObjetoFotos = JSON.stringify(arrayFotos);
-      localStorage.setItem("arrayFotos", arrayObjetoFotos);
-      console.log(localStorage.getItem("arrayFotos"));
-      console.log(arrayFotos);
+      localStorage.removeItem("arrayProductos");
+      arrayObjetoFotos = JSON.stringify(arrayProductos);
+      localStorage.setItem("arrayProductos", arrayObjetoFotos);
+      console.log(localStorage.getItem("arrayProductos"));
+      console.log(arrayProductos);
     });
   });
 }
