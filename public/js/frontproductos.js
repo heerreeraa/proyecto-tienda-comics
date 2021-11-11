@@ -319,7 +319,7 @@ console.log(arrayProductosLocalParseada);
 arrayProductos = arrayProductosLocalParseada;
 
 if (arrayProductos == null) {
-  arrayProductos = [0];
+  arrayProductos = [];
   localStorage.setItem("arrayProductos", JSON.stringify(arrayProductos));
 }
 
@@ -393,9 +393,9 @@ function cargarCesta() {
   arrayProductos = arrayProductosLocalParseada;
 
   if (arrayProductos == null) {
-    arrayProductos = [0];
+    arrayProductos = [];
   }
-  for (let c = 1; c < arrayProductos.length; c++) {
+  for (let c = 0; c < arrayProductos.length; c++) {
     let item = document.createElement("div");
     item.id = `divProd${num2}`;
     item.className = "div-productos-carro";
@@ -439,7 +439,7 @@ function finalizarPedido() {
       arrayProductos2 = arrayProductosLocalParseada;
 
       if (arrayProductos2 == null) {
-        arrayProductos2 = [0];
+        arrayProductos2 = [];
       }
 
       var nombreCliente = document.querySelector(
@@ -466,7 +466,7 @@ function finalizarPedido() {
         .then(function (res) {
           console.log(res);
         });
-      arrayProductos = [0];
+      arrayProductos = [];
       localStorage.removeItem("arrayProductos");
       arrayObjetoFotos = JSON.stringify(arrayProductos);
       localStorage.setItem("arrayProductos", arrayObjetoFotos);
