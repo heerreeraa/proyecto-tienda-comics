@@ -18,7 +18,8 @@ router.get("/cargarClientes", function (request, response) {
 
 router.post("/mostrarVentas", function (request, response) {
   let db = request.app.locals.db;
-  let nombreCliente = request.body.nombre;
+  let nombreCliente = request.body.Nombre;
+  console.log(nombreCliente);
   db.collection("clientes")
     .find({Nombre: nombreCliente})
     .toArray(function (err, datos) {
