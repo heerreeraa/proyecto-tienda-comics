@@ -1010,6 +1010,28 @@ form label {
   text-align: center;
   margin-bottom: 5%;
 }
+.select-tipo-productos {
+  border: #15be1a 2px solid;
+  background-color: #333433;
+  color: #15be1a;
+  border-radius: 5px;
+  margin-top: 1%;
+  height: 28%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.select-busqueda-tipos {
+  border: #15be1a 2px solid;
+  background-color: #333433;
+  color: #15be1a;
+  border-radius: 5px;
+  margin-top: 1%;
+  height: 28%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5%;
+}
 /* <-- END PÁGINA LISTAS */
 
 /* BOTONES MODAL -->*/
@@ -1174,6 +1196,5 @@ form label {
   font-size: 40px !important;
 }
 
-#div-lista-ventas{
-  
+#div-lista-ventas {
 }

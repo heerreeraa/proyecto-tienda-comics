@@ -182,6 +182,14 @@ function cargarModalProducto() {
             </form>
         </div>
         </div>
+        <div id="div-select-productos">
+                                <select class="select-tipo-productos">
+                                    <option value="comics">Comics</option>
+                                    <option value="juegosMesa">Juegos de Mesa</option>
+                                    <option value="juegosCartas">Juegos de Cartas</option>
+                                    <option value="snacks">Snacks</option>
+                                </select>
+                            </div>
     </div>
     <div>
     <button class="btn-modal-producto" id="btn-modificar-producto">MODIFICAR</button>
@@ -336,6 +344,14 @@ function cargarModalAgregarProducto() {
                 </form>
             </div>
         </div>
+        <div id="div-select-productos">
+                                <select class="select-tipo-productos">
+                                    <option value="comics">Comics</option>
+                                    <option value="juegosMesa">Juegos de Mesa</option>
+                                    <option value="juegosCartas">Juegos de Cartas</option>
+                                    <option value="snacks">Snacks</option>
+                                </select>
+                            </div>
     </div>
     <div>
         <button id="btn-insertar-producto">AGREGAR</button>
