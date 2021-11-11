@@ -1,3 +1,5 @@
+let idCliente;
+
 // Get the modal
 var modal = document.querySelector("#myModal");
 
@@ -20,44 +22,49 @@ document
   .addEventListener("click", function (event) {
     event.preventDefault();
     modal.style.display = "block";
+    document.querySelector("#myModal").innerHTML = "";
+    cargarModalAgregarCliente();
+    agregarCliente();
   });
+function agregarCliente() {
+  document
+    .querySelector("#btn-insertar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert("Insertado pa");
 
-document
-  .querySelector("#btn-insertar")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    alert("Insertado pa");
+      let nombre = document.querySelector("input[name='nombre']").value;
+      let apellido = document.querySelector("input[name='apellido']").value;
+      let dni = document.querySelector("input[name='dni']").value;
+      let tel = document.querySelector("input[name='tel']").value;
 
-    let nombre = document.querySelector("input[name='nombre']").value;
-    let apellido = document.querySelector("input[name='apellido']").value;
-    let dni = document.querySelector("input[name='dni']").value;
-    let tel = document.querySelector("input[name='tel']").value;
+      let cliente = {
+        nombre: nombre,
+        apellido: apellido,
+        dni: dni,
+        tel: tel,
+      };
+      console.log(cliente);
+      let body = JSON.stringify(cliente);
 
-    let cliente = {
-      nombre: nombre,
-      apellido: apellido,
-      dni: dni,
-      tel: tel,
-    };
-    console.log(cliente);
-    let body = JSON.stringify(cliente);
-
-    fetch("/clientes/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    })
-      .then(function (response) {
-        return response.json();
+      fetch("/clientes/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
       })
-      .then(function (res) {
-        console.log(res);
-      });
-    modal.style.display = "none";
-    location.reload();
-  });
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      modal.style.display = "none";
+      location.reload();
+    });
+}
+
 function cargarClientes() {
   fetch("/clientes/", {
     method: "GET",
@@ -78,7 +85,7 @@ function cargarClientes() {
 
         item.innerHTML = `
           <a target="_blank">
-            <p>${photo.Nombre}</p>
+            <p id="${photo.DNI}A">${photo.Nombre}</p>
             <img class="img-zoom" src="./styles/user.jpg">
           </a>
           `;
@@ -92,7 +99,7 @@ function generarModalClient() {
     el.addEventListener("click", function () {
       modal.style.display = "block";
       cargarModal(this.id);
-
+      idCliente = this.id;
       updateCliente(this.id);
 
       document.querySelector("#myModal").innerHTML = "";
@@ -154,14 +161,14 @@ function cargarModalCliente() {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
-    location.reload();
+    //location.reload();
   };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
-      location.reload();
+      //location.reload();
     }
   };
   document
@@ -195,7 +202,9 @@ function cargarModalCliente() {
         .then(function (res) {
           console.log(res);
         });
-      location.reload();
+      document.getElementById(`${idCliente}A`).innerHTML = `${nombre}`;
+      modal.style.display = "none";
+      //location.reload();
     });
   document
     .querySelector("#btn-eliminar")
@@ -228,10 +237,70 @@ function cargarModalCliente() {
         .then(function (res) {
           console.log(res);
         });
-      location.reload();
+      document.querySelector(`#${idCliente}`).style.display = "none";
+      modal.style.display = "none";
+      //location.reload();
     });
 }
+function cargarModalAgregarCliente() {
+  const item = document.createElement("div");
+  item.className = `modal-content`;
 
+  item.innerHTML = `
+  <div id="div-btn-cerrar">
+    <span class="close">&times;</span>
+  </div>
+  <div id="content-modal">
+    <div class="div-modal1">
+      <div>
+          <form>
+              <label>DNI</label>
+              <input id="inp-dni" type="text" name="dni" />
+          </form>
+      </div>
+      <div>
+          <form>
+              <label>Nombre</label>
+              <input type="text" name="nombre" />
+          </form>
+      </div>
+    </div>
+    <div class="div-modal2">
+      <div>
+          <form>
+              <label>Apellido</label>
+              <input type="text" name="apellido" />
+          </form>
+      </div>
+      <div>
+          <form>
+              <label>Telefono</label>
+              <input type="text" name="tel" />
+          </form>
+      </div>
+    </div>
+    </div>
+    <div class="div-insert">
+    <button id="btn-insertar">AGREGAR</button>
+  </div>
+    `;
+  document.querySelector("#myModal").appendChild(item);
+
+  var modal = document.querySelector("#myModal");
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function () {
+    modal.style.display = "none";
+    //location.reload();
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      //location.reload();
+    }
+  };
+}
 function cargarModal(dni) {
   let cliente = {
     dni: dni,

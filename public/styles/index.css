@@ -1095,21 +1095,33 @@ form label {
   border-radius: 20px;
 }
 
-.openbtn:focus {
-  animation: animateBg 1s linear 1;
-  background-image: linear-gradient(90deg,#121212,#334233,#2e902c,#05f521,#121212,#334233);
+.openbtn:hover {
+  animation: animateBg 1.35s linear infinite;
+  background-image: linear-gradient(
+    90deg,
+    #121212,
+    #334233,
+    #2e902c,
+    #05f521,
+    #121212,
+    #334233
+  );
   background-size: 500% 100%;
 }
 @keyframes animateBg {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 0%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 .div-productos-carro {
   display: flex;
 }
 
-.btn-finalizar{
+.btn-finalizar {
   padding: 3%;
   cursor: pointer;
   color: #15be1a;
@@ -1119,15 +1131,27 @@ form label {
 }
 .btn-finalizar:focus {
   animation: animateBg2 0.65s linear 1;
-  background-image: linear-gradient(0deg,#121212,#334233,#2e902c,#05f521,#121212,#334233);
+  background-image: linear-gradient(
+    0deg,
+    #121212,
+    #334233,
+    #2e902c,
+    #05f521,
+    #121212,
+    #334233
+  );
   background-size: 100% 500%;
 }
 @keyframes animateBg2 {
-  0% { background-position: 0% 100%; }
-  100% { background-position: 0% 0%; }
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
-.btn-modal-producto{
+.btn-modal-producto {
   background-color: #15be1a;
   color: white;
   font-weight: bold;
@@ -1135,18 +1159,17 @@ form label {
   border-radius: 15px;
   padding: 1%;
   margin: 2%;
-
 }
 
-.btn-borrar-cesta{
+.btn-borrar-cesta {
   color: #15be1a;
-  background-color:rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   border-style: none;
   font-weight: bold;
   font-size: 20px;
   margin-top: 2px;
-};
+}
 
-#tit-cesta{
+#tit-cesta {
   font-size: 40px !important;
 }
