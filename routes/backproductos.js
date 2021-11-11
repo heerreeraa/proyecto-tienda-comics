@@ -124,4 +124,40 @@ router.get("/cargarClientes", function (request, response) {
     });
 });
 // <-- MOSTRAR CLIENTES
+
+// MODAL DATOS DEL PRODUCTO CLICKADO  -->
+router.post("/venta", function (request, response) {
+  let variablenombre = request.body.nombreCliente;
+  let variablearray = request.body.arrayProductos;
+  let db = request.app.locals.db;
+
+  db.collection("clientes")
+    .find({ Nombre: variablenombre })
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+        response.send({ mensaje: "error: " + err });
+      } else {
+        console.log(datos);
+        // response.send(datos);
+        let dni = datos[0].DNI;
+        db.collection("ventas").insertOne(
+          {
+            DNI: dni,
+            Productos: variablearray,
+          },
+          function (err, respuesta) {
+            if (err !== undefined) {
+              console.log(err),
+                res.send({ mensaje: "Ha habido un error. " + err });
+            } else {
+              // console.log(respuesta);
+              console.log("Introducido correctamente");
+            }
+          }
+        );
+      }
+    });
+});
+// <-- MODAL DATOS DEL PRODUCTO CLICKADO
 module.exports = router;
