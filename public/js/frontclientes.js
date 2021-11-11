@@ -1,3 +1,5 @@
+let idCliente;
+
 // Get the modal
 var modal = document.querySelector("#myModal");
 
@@ -22,44 +24,47 @@ document
     modal.style.display = "block";
     document.querySelector("#myModal").innerHTML = "";
     cargarModalAgregarCliente();
+    agregarCliente();
   });
+function agregarCliente() {
+  document
+    .querySelector("#btn-insertar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert("Insertado pa");
 
-document
-  .querySelector("#btn-insertar")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    alert("Insertado pa");
+      let nombre = document.querySelector("input[name='nombre']").value;
+      let apellido = document.querySelector("input[name='apellido']").value;
+      let dni = document.querySelector("input[name='dni']").value;
+      let tel = document.querySelector("input[name='tel']").value;
 
-    let nombre = document.querySelector("input[name='nombre']").value;
-    let apellido = document.querySelector("input[name='apellido']").value;
-    let dni = document.querySelector("input[name='dni']").value;
-    let tel = document.querySelector("input[name='tel']").value;
+      let cliente = {
+        nombre: nombre,
+        apellido: apellido,
+        dni: dni,
+        tel: tel,
+      };
+      console.log(cliente);
+      let body = JSON.stringify(cliente);
 
-    let cliente = {
-      nombre: nombre,
-      apellido: apellido,
-      dni: dni,
-      tel: tel,
-    };
-    console.log(cliente);
-    let body = JSON.stringify(cliente);
-
-    fetch("/clientes/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    })
-      .then(function (response) {
-        return response.json();
+      fetch("/clientes/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
       })
-      .then(function (res) {
-        console.log(res);
-      });
-    modal.style.display = "none";
-    location.reload();
-  });
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      modal.style.display = "none";
+      location.reload();
+    });
+}
+
 function cargarClientes() {
   fetch("/clientes/", {
     method: "GET",
@@ -80,7 +85,7 @@ function cargarClientes() {
 
         item.innerHTML = `
           <a target="_blank">
-            <p>${photo.Nombre}</p>
+            <p id="${photo.DNI}A">${photo.Nombre}</p>
             <img class="img-zoom" src="./styles/user.jpg">
           </a>
           `;
@@ -94,7 +99,7 @@ function generarModalClient() {
     el.addEventListener("click", function () {
       modal.style.display = "block";
       cargarModal(this.id);
-
+      idCliente = this.id;
       updateCliente(this.id);
 
       document.querySelector("#myModal").innerHTML = "";
@@ -197,7 +202,9 @@ function cargarModalCliente() {
         .then(function (res) {
           console.log(res);
         });
-      location.reload();
+      document.getElementById(`${idCliente}A`).innerHTML = `${nombre}`;
+      modal.style.display = "none";
+      //location.reload();
     });
   document
     .querySelector("#btn-eliminar")
@@ -230,7 +237,9 @@ function cargarModalCliente() {
         .then(function (res) {
           console.log(res);
         });
-      location.reload();
+      document.querySelector(`#${idCliente}`).style.display = "none";
+      modal.style.display = "none";
+      //location.reload();
     });
 }
 function cargarModalAgregarCliente() {

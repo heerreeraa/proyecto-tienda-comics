@@ -1,10 +1,24 @@
 let num = 0;
+let idProd;
 // FUNCIONAMIENTO DEL MODAL -->
 var modal = document.querySelector("#myModal");
 var span = document.getElementsByClassName("close")[0];
 
+cargarProductos();
+cargarClientes();
+cargarCesta();
+finalizarPedido();
+
 span.onclick = function () {
   modal.style.display = "none";
+  let img = document.querySelectorAll(".boton-carrito");
+  for (let c = 0; c < img.length; c++) {
+    img[c].style.zIndex = "1";
+  }
+  let img2 = document.querySelectorAll(".btn-carrito");
+  for (let c = 0; c < img2.length; c++) {
+    img2[c].style.zIndex = "1";
+  }
 };
 
 window.onclick = function (event) {
@@ -19,44 +33,62 @@ document
     modal.style.display = "block";
     document.querySelector("#myModal").innerHTML = "";
     cargarModalAgregarProducto();
+    agregarProducto();
+    let img = document.querySelectorAll(".boton-carrito");
+    for (let c = 0; c < img.length; c++) {
+      img[c].style.zIndex = "0";
+    }
+    let img2 = document.querySelectorAll(".btn-carrito");
+    for (let c = 0; c < img2.length; c++) {
+      img2[c].style.zIndex = "0";
+    }
   });
 // <-- END FUNCIONAMIENTO DEL MODAL
 
 // INSERTAR PRODUCTO EN LOCAL -->
-document
-  .querySelector("#btn-insertar-producto")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    alert("Producto insertado correctamente pá!");
+function agregarProducto() {
+  document
+    .querySelector("#btn-insertar-producto")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert("Producto insertado correctamente pá!");
 
-    let nombre = document.querySelector("input[name='nombre-producto']").value;
-    let precio = document.querySelector("input[name='precio-producto']").value;
-    let imagen = document.querySelector("input[name='imagen-producto']").value;
+      let nombre = document.querySelector(
+        "input[name='nombre-producto']"
+      ).value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
 
-    let producto = {
-      nombre: nombre,
-      precio: precio,
-      imagen: imagen,
-    };
-    console.log(producto);
-    let body = JSON.stringify(producto);
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
 
-    fetch("/productos/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    })
-      .then(function (response) {
-        return response.json();
+      fetch("/productos/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
       })
-      .then(function (res) {
-        console.log(res);
-      });
-    modal.style.display = "none";
-    location.reload();
-  });
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      modal.style.display = "none";
+      location.reload();
+    });
+}
+
 // <-- END INSERTAR PRODCUTO EN LOCAL
 
 // MOSTRAR PRODUCTO INSERTADO  -->
@@ -80,7 +112,7 @@ function cargarProductos() {
 
         item.innerHTML = `
             <a target="_blank">
-              <p>${photo.Nombre} ${photo.Precio}</p>
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
               <button id=boton${num} class="btn-carrito">
                 <img id=${photo.Nombre} src=../styles/carrito2.png>
               </button>
@@ -105,9 +137,18 @@ function generarModalProduct() {
     el.addEventListener("click", function () {
       modal.style.display = "block";
       cargarModal(this.id);
+      idProd = this.id;
       document.querySelector("#myModal").innerHTML = "";
       cargarModalProducto();
       eliminarProductos();
+      let img = document.querySelectorAll(".boton-carrito");
+      for (let c = 0; c < img.length; c++) {
+        img[c].style.zIndex = "0";
+      }
+      let img2 = document.querySelectorAll(".btn-carrito");
+      for (let c = 0; c < img2.length; c++) {
+        img2[c].style.zIndex = "0";
+      }
     });
   });
 }
@@ -155,12 +196,28 @@ function cargarModalProducto() {
   span.onclick = function () {
     modal.style.display = "none";
     //location.reload();
+    let img = document.querySelectorAll(".boton-carrito");
+    for (let c = 0; c < img.length; c++) {
+      img[c].style.zIndex = "1";
+    }
+    let img2 = document.querySelectorAll(".btn-carrito");
+    for (let c = 0; c < img2.length; c++) {
+      img2[c].style.zIndex = "1";
+    }
   };
 
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
       //location.reload();
+      let img = document.querySelectorAll(".boton-carrito");
+      for (let c = 0; c < img.length; c++) {
+        img[c].style.zIndex = "1";
+      }
+      let img2 = document.querySelectorAll(".btn-carrito");
+      for (let c = 0; c < img2.length; c++) {
+        img2[c].style.zIndex = "1";
+      }
     }
   };
   document
@@ -199,15 +256,16 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
-      //document.querySelector("#galeria-productos").innerHTML = "";
-      //cargarProductos();
-      location.reload();
+      // document.querySelector("#galeria-productos").innerHTML = "";
+      // cargarProductos();
+      document.querySelector(`#${idProd}A`).innerHTML = `${nombre} ${precio}`;
+      modal.style.display = "none";
+      //location.reload();
     });
   document
     .querySelector("#btn-eliminar-producto")
     .addEventListener("click", function (event) {
       event.preventDefault();
-      alert(1);
       let nombre = document.querySelector(
         "input[name='nombre-producto']"
       ).value;
@@ -240,9 +298,13 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
+
       // document.querySelector("#galeria-productos").innerHTML = "";
       // cargarProductos();
-      location.reload();
+      document.querySelector(`#${idProd}`).style.display = "none";
+
+      modal.style.display = "none";
+      //location.reload();
     });
 }
 function cargarModalAgregarProducto() {
@@ -460,7 +522,7 @@ function cargarCesta() {
     a.innerHTML = `${arrayProductos[c]}`;
 
     let btn = document.createElement("button");
-    btn.className = "btn-borrar-cesta"
+    btn.className = "btn-borrar-cesta";
     btn.id = `${arrayProductos[c]}`;
     btn.innerHTML = "X";
     document.querySelector("#mySidepanel").appendChild(item);
@@ -562,7 +624,3 @@ function eliminarProdCesta() {
       });
     });
 }
-cargarProductos();
-cargarClientes();
-cargarCesta();
-finalizarPedido();
