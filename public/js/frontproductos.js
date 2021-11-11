@@ -17,6 +17,8 @@ document
   .addEventListener("click", function (event) {
     event.preventDefault();
     modal.style.display = "block";
+    document.querySelector("#myModal").innerHTML = "";
+    cargarModalAgregarProducto();
   });
 // <-- END FUNCIONAMIENTO DEL MODAL
 
@@ -165,7 +167,6 @@ function cargarModalProducto() {
     .querySelector("#btn-modificar-producto")
     .addEventListener("click", function (event) {
       event.preventDefault();
-      alert(1);
       let nombre = document.querySelector(
         "input[name='nombre-producto']"
       ).value;
@@ -198,7 +199,9 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
-      //location.reload();
+      //document.querySelector("#galeria-productos").innerHTML = "";
+      //cargarProductos();
+      location.reload();
     });
   document
     .querySelector("#btn-eliminar-producto")
@@ -237,7 +240,9 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
-      //location.reload();
+      // document.querySelector("#galeria-productos").innerHTML = "";
+      // cargarProductos();
+      location.reload();
     });
 }
 function cargarModalAgregarProducto() {
@@ -290,84 +295,6 @@ function cargarModalAgregarProducto() {
       //location.reload();
     }
   };
-  document
-    .querySelector("#btn-modificar-producto")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      alert(1);
-      let nombre = document.querySelector(
-        "input[name='nombre-producto']"
-      ).value;
-      let precio = document.querySelector(
-        "input[name='precio-producto']"
-      ).value;
-      let imagen = document.querySelector(
-        "input[name='imagen-producto']"
-      ).value;
-
-      let producto = {
-        nombre: nombre,
-        precio: precio,
-        imagen: imagen,
-      };
-      console.log(producto);
-      let body = JSON.stringify(producto);
-
-      fetch("/productos/", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (res) {
-          console.log(res);
-        });
-      cargarCesta();
-      //location.reload();
-    });
-  document
-    .querySelector("#btn-eliminar-producto")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      alert(1);
-      let nombre = document.querySelector(
-        "input[name='nombre-producto']"
-      ).value;
-      let precio = document.querySelector(
-        "input[name='precio-producto']"
-      ).value;
-      let imagen = document.querySelector(
-        "input[name='imagen-producto']"
-      ).value;
-
-      let producto = {
-        nombre: nombre,
-        precio: precio,
-        imagen: imagen,
-      };
-      console.log(producto);
-      let body = JSON.stringify(producto);
-
-      fetch("/productos/", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (res) {
-          console.log(res);
-        });
-      cargarCesta();
-      //location.reload();
-    });
 }
 
 function cargarModal(nombre) {
@@ -442,14 +369,14 @@ function eliminarProductos() {
 // <-- ELIMINAR PRODUCTO
 
 this.arrayProductos = [];
-this.arrayProductosLocal = localStorage.getItem("arrayProductos");
+this.arrayProductosLocal = sessionStorage.getItem("arrayProductos");
 this.arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
 console.log(arrayProductosLocalParseada);
 arrayProductos = arrayProductosLocalParseada;
 
 if (arrayProductos == null) {
   arrayProductos = [];
-  localStorage.setItem("arrayProductos", JSON.stringify(arrayProductos));
+  sessionStorage.setItem("arrayProductos", JSON.stringify(arrayProductos));
 }
 
 function añadirCesta() {
@@ -458,9 +385,9 @@ function añadirCesta() {
       let idImg = this.id;
 
       arrayProductos.push(`${idImg}`);
-      localStorage.removeItem("arrayProductos");
+      sessionStorage.removeItem("arrayProductos");
       arrayObjetoFotos = JSON.stringify(arrayProductos);
-      localStorage.setItem("arrayProductos", arrayObjetoFotos);
+      sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
 
       console.log("Array js:" + arrayProductos);
       console.log("Array local: " + arrayProductosLocalParseada.length);
@@ -479,10 +406,10 @@ function eliminarCesta() {
       if (index > -1) {
         arrayProductos.splice(index, 1);
       }
-      localStorage.removeItem("arrayProductos");
+      sessionStorage.removeItem("arrayProductos");
       arrayObjetoFotos = JSON.stringify(arrayProductos);
-      localStorage.setItem("arrayProductos", arrayObjetoFotos);
-      console.log(localStorage.getItem("arrayProductos"));
+      sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
+      console.log(sessionStorage.getItem("arrayProductos"));
       console.log(arrayProductos);
       vaciarCesta();
       crearCesta();
@@ -516,7 +443,7 @@ function cargarClientes() {
 let num2 = 0;
 function cargarCesta() {
   let arrayProductos = [];
-  arrayProductosLocal = localStorage.getItem("arrayProductos");
+  arrayProductosLocal = sessionStorage.getItem("arrayProductos");
   arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
   console.log(arrayProductosLocalParseada);
   arrayProductos = arrayProductosLocalParseada;
@@ -562,7 +489,7 @@ function finalizarPedido() {
     .addEventListener("click", function (event) {
       event.preventDefault();
       let arrayProductos2 = [];
-      arrayProductosLocal = localStorage.getItem("arrayProductos");
+      arrayProductosLocal = sessionStorage.getItem("arrayProductos");
       arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
       console.log(arrayProductosLocalParseada);
       arrayProductos2 = arrayProductosLocalParseada;
@@ -596,10 +523,10 @@ function finalizarPedido() {
           console.log(res);
         });
       arrayProductos = [];
-      localStorage.removeItem("arrayProductos");
+      sessionStorage.removeItem("arrayProductos");
       arrayObjetoFotos = JSON.stringify(arrayProductos);
-      localStorage.setItem("arrayProductos", arrayObjetoFotos);
-      console.log(localStorage.getItem("arrayProductos"));
+      sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
+      console.log(sessionStorage.getItem("arrayProductos"));
       console.log(arrayProductos);
       vaciarCesta();
       crearCesta();
@@ -619,10 +546,10 @@ function eliminarProdCesta() {
           if (index > -1) {
             arrayProductos.splice(index, 1);
           }
-          localStorage.removeItem("arrayProductos");
+          sessionStorage.removeItem("arrayProductos");
           arrayObjetoFotos = JSON.stringify(arrayProductos);
-          localStorage.setItem("arrayProductos", arrayObjetoFotos);
-          console.log(localStorage.getItem("arrayProductos"));
+          sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
+          console.log(sessionStorage.getItem("arrayProductos"));
           console.log(arrayProductos);
         } else {
           // Do nothing!

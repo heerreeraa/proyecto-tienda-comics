@@ -20,6 +20,8 @@ document
   .addEventListener("click", function (event) {
     event.preventDefault();
     modal.style.display = "block";
+    document.querySelector("#myModal").innerHTML = "";
+    cargarModalAgregarCliente();
   });
 
 document
@@ -154,14 +156,14 @@ function cargarModalCliente() {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
-    location.reload();
+    //location.reload();
   };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
-      location.reload();
+      //location.reload();
     }
   };
   document
@@ -231,7 +233,65 @@ function cargarModalCliente() {
       location.reload();
     });
 }
+function cargarModalAgregarCliente() {
+  const item = document.createElement("div");
+  item.className = `modal-content`;
 
+  item.innerHTML = `
+  <div id="div-btn-cerrar">
+    <span class="close">&times;</span>
+  </div>
+  <div id="content-modal">
+    <div class="div-modal1">
+      <div>
+          <form>
+              <label>DNI</label>
+              <input id="inp-dni" type="text" name="dni" />
+          </form>
+      </div>
+      <div>
+          <form>
+              <label>Nombre</label>
+              <input type="text" name="nombre" />
+          </form>
+      </div>
+    </div>
+    <div class="div-modal2">
+      <div>
+          <form>
+              <label>Apellido</label>
+              <input type="text" name="apellido" />
+          </form>
+      </div>
+      <div>
+          <form>
+              <label>Telefono</label>
+              <input type="text" name="tel" />
+          </form>
+      </div>
+    </div>
+    </div>
+    <div class="div-insert">
+    <button id="btn-insertar">AGREGAR</button>
+  </div>
+    `;
+  document.querySelector("#myModal").appendChild(item);
+
+  var modal = document.querySelector("#myModal");
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function () {
+    modal.style.display = "none";
+    //location.reload();
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      //location.reload();
+    }
+  };
+}
 function cargarModal(dni) {
   let cliente = {
     dni: dni,
