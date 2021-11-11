@@ -1126,3 +1126,14 @@ form label {
   0% { background-position: 0% 100%; }
   100% { background-position: 0% 0%; }
 }
+
+.btn-modal-producto{
+  background-color: #15be1a;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+  padding: 1%;
+  margin: 2%;
+
+}

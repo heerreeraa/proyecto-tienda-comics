@@ -141,8 +141,8 @@ function cargarModalProducto() {
         </div>
     </div>
     <div>
-    <button id="btn-modificar-producto">MODIFICAR</button>
-    <button id="btn-eliminar-producto">ELIMINAR</button>    
+    <button class="btn-modal-producto" id="btn-modificar-producto">MODIFICAR</button>
+    <button class="btn-modal-producto" id="btn-eliminar-producto">ELIMINAR</button>    
     </div> 
     `;
   document.querySelector("#myModal").appendChild(item);
