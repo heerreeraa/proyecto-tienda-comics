@@ -9,7 +9,7 @@ function cargarClientes() {
       return response.json();
     })
     .then(function (res) {
-      console.log(res);
+      // console.log(res);
 
       res.forEach((photo) => {
         const item = document.createElement("option");
@@ -18,21 +18,32 @@ function cargarClientes() {
         item.innerHTML = `${photo.Nombre}`;
         document.querySelector(".select-usuario-ventas").appendChild(item);
       });
-      mostrarVentas();
 
     });
 }
 cargarClientes();
 
 function mostrarVentas() {
+  let nombreVentas;
   document.querySelector(".select-usuario-ventas")
       .addEventListener("change", function (event) {
-      // event.preventDefault();
-      let nombreVentas = (`${event.target.value}`);
+      event.preventDefault();
+      nombreVentas = (`${event.target.value}`);
       console.log(nombreVentas);
-      
+  })
+  fetch("/listas/mostrarVentas", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({dni:nombreVentas}),
+  }).then(function (response) {
+      return response.json()
+  }).then(function (res) {
+      console.log(res);
   })
 }
+mostrarVentas();
 
 
 

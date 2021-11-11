@@ -7,28 +7,29 @@ router.get("/cargarClientes", function (request, response) {
     .find()
     .toArray(function (err, datos) {
       if (err != undefined) {
-        console.log(err);
+        // console.log(err);
         response.send({ mensaje: "error: " + err });
       } else {
-        console.log(datos);
+        // console.log(datos);
         response.send(datos);
       }
     });
 });
 
-router.get("/mostrarVentas", function (request, response) {
+router.post("/mostrarVentas", function (request, response) {
   let db = request.app.locals.db;
+  let nombreCliente = request.body.nombre;
   db.collection("clientes")
-    .find()
+    .find({Nombre: nombreCliente})
     .toArray(function (err, datos) {
       if (err != undefined) {
-        console.log(err);
+        // console.log(err);
         response.send({ mensaje: "error: " + err });
       } else {
         console.log(datos);
         response.send(datos);
+        // let dniCliente = datos.DNI;
       }
     });
 });
-
 module.exports = router;
