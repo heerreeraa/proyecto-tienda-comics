@@ -533,6 +533,7 @@ function cargarCesta() {
     a.innerHTML = `${arrayProductos[c]}`;
 
     let btn = document.createElement("button");
+    btn.className = "btn-borrar-cesta"
     btn.id = `${arrayProductos[c]}`;
     btn.innerHTML = "X";
     document.querySelector("#mySidepanel").appendChild(item);

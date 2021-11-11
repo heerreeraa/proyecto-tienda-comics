@@ -585,6 +585,7 @@ PRESENTATION STYLES
 */
 
 .menu {
+  margin-top: 3%;
   background-color: var(--menuBackgroundColor, #f0f0f0);
   box-shadow: var(
     --menuBoxShadow,
@@ -1087,20 +1088,28 @@ form label {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
+  color: #15be1a;
+  background-color: #191a198a;
+  padding: 10px;
   border: none;
+  border-radius: 20px;
 }
 
-.openbtn:hover {
-  background-color: #444;
+.openbtn:focus {
+  animation: animateBg 1s linear 1;
+  background-image: linear-gradient(90deg,#121212,#334233,#2e902c,#05f521,#121212,#334233);
+  background-size: 500% 100%;
 }
+@keyframes animateBg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
 .div-productos-carro {
   display: flex;
 }
 
-.btn-finalizar {
+.btn-finalizar{
   padding: 3%;
   cursor: pointer;
   color: #15be1a;
@@ -1110,15 +1119,7 @@ form label {
 }
 .btn-finalizar:focus {
   animation: animateBg2 0.65s linear 1;
-  background-image: linear-gradient(
-    0deg,
-    #121212,
-    #334233,
-    #2e902c,
-    #05f521,
-    #121212,
-    #334233
-  );
+  background-image: linear-gradient(0deg,#121212,#334233,#2e902c,#05f521,#121212,#334233);
   background-size: 100% 500%;
 }
 @keyframes animateBg2 {
@@ -1135,4 +1136,17 @@ form label {
   padding: 1%;
   margin: 2%;
 
+}
+
+.btn-borrar-cesta{
+  color: #15be1a;
+  background-color:rgba(0, 0, 0, 0);
+  border-style: none;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 2px;
+};
+
+#tit-cesta{
+  font-size: 40px !important;
 }
