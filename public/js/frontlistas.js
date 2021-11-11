@@ -41,7 +41,18 @@ function mostrarVentas() {
       }).then(function (response) {
         return response.json()
       }).then(function (res) {
-        console.log(res);
+        // console.log(res);
+        let arrayLista = res[0].Productos;
+        console.log(arrayLista);
+        for(i=0; i<arrayLista.length; i++){
+          const elemento = document.createElement("p");
+          const elemContenido = document.createTextNode(arrayLista[i]);
+          elemento.appendChild(elemContenido);
+          let divLista = document.querySelector("#div-lista-ventas");
+          divLista.appendChild(elemento);
+        }
+        // document.querySelector("#myModal").appendChild(item);
+        // var modal = document.querySelector("#myModal");
       })
     })
 }

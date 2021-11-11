@@ -39,8 +39,13 @@ router.post("/mostrarVentas", function (request, response) {
               // console.log(err);
               response.send({ mensaje: "error: " + err });
             } else {
-              console.log(vent);
-              response.send(vent);
+              if(vent.length===0){
+                response.send("El cliente seleccionado no ha realizado ninguna venta (aún ;)");
+                
+              }else{
+                console.log(vent);
+                response.send(vent);
+              }
             }
           });
       }
