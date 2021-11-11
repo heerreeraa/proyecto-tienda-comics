@@ -19,17 +19,30 @@ router.get("/cargarClientes", function (request, response) {
 router.post("/mostrarVentas", function (request, response) {
   let db = request.app.locals.db;
   let nombreCliente = request.body.Nombre;
-  console.log(nombreCliente);
+  // console.log(nombreCliente);
+  // BUSCAR CLIENTES POR NOMBRES EN CLIENTES
   db.collection("clientes")
-    .find({Nombre: nombreCliente})
+    .find({ Nombre: nombreCliente })
     .toArray(function (err, datos) {
       if (err != undefined) {
         // console.log(err);
         response.send({ mensaje: "error: " + err });
       } else {
-        console.log(datos);
-        response.send(datos);
-        // let dniCliente = datos.DNI;
+
+        let dniventa = datos[0].DNI;
+        // console.log(dniventa);
+        // BUSCAR DNI EN VENTAS
+        db.collection("ventas")
+          .find({ DNI: dniventa })
+          .toArray(function (err, vent) {
+            if (err != undefined) {
+              // console.log(err);
+              response.send({ mensaje: "error: " + err });
+            } else {
+              console.log(vent);
+              response.send(vent);
+            }
+          });
       }
     });
 });
