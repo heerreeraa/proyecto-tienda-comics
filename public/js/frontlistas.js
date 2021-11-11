@@ -18,6 +18,22 @@ function cargarClientes() {
         item.innerHTML = `${photo.Nombre}`;
         document.querySelector(".select-usuario-ventas").appendChild(item);
       });
+      mostrarVentas();
+
     });
 }
 cargarClientes();
+
+function mostrarVentas() {
+  document.querySelector(".select-usuario-ventas")
+      .addEventListener("change", function (event) {
+      // event.preventDefault();
+      let nombreVentas = (`${event.target.value}`);
+      console.log(nombreVentas);
+      
+  })
+}
+
+
+
+

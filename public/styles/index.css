@@ -1099,3 +1099,33 @@ form label {
 .div-productos-carro {
   display: flex;
 }
+
+.btn-finalizar {
+  padding: 3%;
+  cursor: pointer;
+  color: #15be1a;
+  background-color: #121212;
+  border: #15be1a 1.5px solid;
+  border-radius: 20px;
+}
+.btn-finalizar:focus {
+  animation: animateBg2 0.65s linear 1;
+  background-image: linear-gradient(
+    0deg,
+    #121212,
+    #334233,
+    #2e902c,
+    #05f521,
+    #121212,
+    #334233
+  );
+  background-size: 100% 500%;
+}
+@keyframes animateBg2 {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
