@@ -152,13 +152,13 @@ function cargarModalProducto() {
 
   span.onclick = function () {
     modal.style.display = "none";
-    location.reload();
+    //location.reload();
   };
 
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
-      location.reload();
+      //location.reload();
     }
   };
   document
@@ -198,7 +198,7 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
-      location.reload();
+      //location.reload();
     });
   document
     .querySelector("#btn-eliminar-producto")
@@ -237,7 +237,136 @@ function cargarModalProducto() {
           console.log(res);
         });
       cargarCesta();
-      location.reload();
+      //location.reload();
+    });
+}
+function cargarModalAgregarProducto() {
+  const item = document.createElement("div");
+  item.className = `modal-content`;
+
+  item.innerHTML = `
+    <div id="div-btn-cerrar">
+        <span class="close">&times;</span>
+    </div>
+    <div id="content-modal">
+        <div>
+            <div>
+                <form>
+                    <label>Nombre</label>
+                    <input type="text" name="nombre-producto" />
+                </form>
+            </div>
+            <div>
+                <form>
+                    <label>Precio</label>
+                    <input type="text" name="precio-producto" />
+                </form>
+            </div>
+            <div>
+                <form>
+                    <label>Imagen</label>
+                    <input type="text" name="imagen-producto" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button id="btn-insertar-producto">AGREGAR</button>
+    </div>
+    `;
+  document.querySelector("#myModal").appendChild(item);
+
+  var modal = document.querySelector("#myModal");
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function () {
+    modal.style.display = "none";
+    //location.reload();
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      //location.reload();
+    }
+  };
+  document
+    .querySelector("#btn-modificar-producto")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert(1);
+      let nombre = document.querySelector(
+        "input[name='nombre-producto']"
+      ).value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
+
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
+
+      fetch("/productos/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      cargarCesta();
+      //location.reload();
+    });
+  document
+    .querySelector("#btn-eliminar-producto")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      alert(1);
+      let nombre = document.querySelector(
+        "input[name='nombre-producto']"
+      ).value;
+      let precio = document.querySelector(
+        "input[name='precio-producto']"
+      ).value;
+      let imagen = document.querySelector(
+        "input[name='imagen-producto']"
+      ).value;
+
+      let producto = {
+        nombre: nombre,
+        precio: precio,
+        imagen: imagen,
+      };
+      console.log(producto);
+      let body = JSON.stringify(producto);
+
+      fetch("/productos/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log(res);
+        });
+      cargarCesta();
+      //location.reload();
     });
 }
 
