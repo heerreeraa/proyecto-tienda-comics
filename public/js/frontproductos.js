@@ -35,7 +35,6 @@ document
     modal.style.display = "block";
     document.querySelector("#myModal").innerHTML = "";
     cargarModalAgregarProducto();
-    cambioTipoProducto();
     agregarProducto();
     let img = document.querySelectorAll(".boton-carrito");
     for (let c = 0; c < img.length; c++) {
@@ -65,7 +64,8 @@ function agregarProducto() {
       let imagen = document.querySelector(
         "input[name='imagen-producto']"
       ).value;
-
+      let select = document.querySelector(".select-tipo-productos");
+      tipo = select.options[select.selectedIndex].value;
       let producto = {
         nombre: nombre,
         precio: precio,
@@ -98,6 +98,228 @@ function agregarProducto() {
 // MOSTRAR PRODUCTO INSERTADO  -->
 function cargarProductos() {
   fetch("/productos/", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosComics() {
+  fetch("/productos/comics", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosJuegosDeMesa() {
+  fetch("/productos/juegosDeMesa", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosJuegosDeMesa() {
+  fetch("/productos/juegosDeMesa", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosJuegosDeMesa() {
+  fetch("/productos/juegosDeMesa", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosJuegosDeCartas() {
+  fetch("/productos/juegosDeCartas", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (res) {
+      console.log(res);
+
+      res.forEach((photo) => {
+        const item = document.createElement("div");
+        item.id = `${photo.Nombre}`;
+        item.classList.add("item");
+
+        item.innerHTML = `
+            <a target="_blank">
+              <p id="${photo.Nombre}A">${photo.Nombre} ${photo.Precio}</p>
+              <button id=boton${num} class="btn-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito2.png>
+              </button>
+              <button id=btn${num} class="boton-carrito">
+                <img id=${photo.Nombre} src=../styles/carrito.png>
+              </button>
+              <img id=${photo.Nombre} class="img-zoom" src="${photo.Imagen}" style="width:300px; heigth:300px;">
+            </a>
+            `;
+        document.querySelector(".gallery").appendChild(item);
+      });
+      generarModalProduct();
+      añadirCesta();
+      eliminarCesta();
+    });
+}
+function cargarProductosSnacks() {
+  fetch("/productos/snacks", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -235,13 +457,6 @@ function cargarModalProducto() {
   };
 
   document
-    .querySelector(".select-tipo-productos")
-    .addEventListener("change", function (event) {
-      event.preventDefault();
-      tipo = this.value;
-    });
-
-  document
     .querySelector("#btn-modificar-producto")
     .addEventListener("click", function (event) {
       event.preventDefault();
@@ -254,6 +469,9 @@ function cargarModalProducto() {
       let imagen = document.querySelector(
         "input[name='imagen-producto']"
       ).value;
+
+      let select = document.querySelector(".select-tipo-productos");
+      tipo = select.options[select.selectedIndex].value;
 
       let producto = {
         nombre: nombre,
@@ -297,6 +515,8 @@ function cargarModalProducto() {
       let imagen = document.querySelector(
         "input[name='imagen-producto']"
       ).value;
+      let select = document.querySelector(".select-tipo-productos");
+      tipo = select.options[select.selectedIndex].value;
 
       let producto = {
         nombre: nombre,
@@ -668,25 +888,32 @@ function cambioTipo() {
     .addEventListener("change", function (event) {
       event.preventDefault();
       if (this.value == "comics") {
-        alert(1);
+        document.querySelector("#galeria-productos").innerHTML = "";
+        cargarProductosComics();
       } else if (this.value == "juegosMesa") {
-        alert(2);
+        document.querySelector("#galeria-productos").innerHTML = "";
+        cargarProductosJuegosDeMesa();
       } else if (this.value == "juegosCartas") {
-        alert(3);
+        document.querySelector("#galeria-productos").innerHTML = "";
+        cargarProductosJuegosDeCartas();
       } else if (this.value == "snacks") {
-        alert(4);
+        document.querySelector("#galeria-productos").innerHTML = "";
+        cargarProductosSnacks();
       } else {
-        alert(0);
+        document.querySelector("#galeria-productos").innerHTML = "";
+        cargarProductos();
       }
     });
 }
 function cambioTipoProducto() {
-  document
-    .querySelector(".select-tipo-productos")
-    .addEventListener("change", function (event) {
-      event.preventDefault();
-      tipo = this.value;
-      alert(tipo);
-    });
+  // document
+  //   .querySelector(".select-tipo-productos")
+  //   .addEventListener("change", function (event) {
+  //     event.preventDefault();
+  //     tipo = this.value;
+  //     alert(tipo);
+  //   });
+  var select = document.querySelector(".select-tipo-productos");
+  tipo = select.options[select.selectedIndex].value;
 }
 cambioTipo();
