@@ -86,7 +86,7 @@ function cargarClientes() {
         item.innerHTML = `
           <a target="_blank">
             <p id="${photo.DNI}A">${photo.Nombre}</p>
-            <img class="img-zoom" src="./styles/user.jpg">
+            <img class="img-zoom" src="./styles/icono-usuario.png">
           </a>
           `;
         document.querySelector(".gallery").appendChild(item);

@@ -41,7 +41,7 @@ router.post("/mostrarVentas", function (request, response) {
             } else {
               if(vent.length===0){
                 response.send("El cliente seleccionado no ha realizado ninguna venta (aún ;)");
-                
+
               }else{
                 console.log(vent);
                 response.send(vent);

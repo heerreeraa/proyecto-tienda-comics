@@ -48,8 +48,7 @@ body {
   justify-content: space-around;
 }
 .img-zoom {
-  width: 100%;
-  height: 100%;
+  
   object-fit: cover;
 }
 
@@ -830,6 +829,7 @@ canvas {
   overflow: hidden;
   border-radius: 8px;
   transition: 0.3s ease box-shadow;
+  font-size: 40px;
 }
 
 .item:hover {
@@ -994,11 +994,14 @@ form label {
   background-color: #333433;
   color: #15be1a;
   border-radius: 5px;
-  margin-top: 1%;
+  margin: 5%;
   height: 40%;
-  width: 50%;
+  width: 80%;
   text-align: center;
+  font-size: 17px;
+  padding: 2%;
 }
+
 .select-clientes-ventas {
   border: #15be1a 2px solid;
   background-color: #333433;
@@ -1211,4 +1214,5 @@ form label {
 }
 
 #div-lista-ventas {
+
 }
