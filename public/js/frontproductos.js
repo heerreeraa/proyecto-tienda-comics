@@ -1,5 +1,7 @@
 let num = 0;
 let idProd;
+let tipo;
+
 // FUNCIONAMIENTO DEL MODAL -->
 var modal = document.querySelector("#myModal");
 var span = document.getElementsByClassName("close")[0];
@@ -33,6 +35,7 @@ document
     modal.style.display = "block";
     document.querySelector("#myModal").innerHTML = "";
     cargarModalAgregarProducto();
+    cambioTipoProducto();
     agregarProducto();
     let img = document.querySelectorAll(".boton-carrito");
     for (let c = 0; c < img.length; c++) {
@@ -67,6 +70,7 @@ function agregarProducto() {
         nombre: nombre,
         precio: precio,
         imagen: imagen,
+        tipo: tipo,
       };
       console.log(producto);
       let body = JSON.stringify(producto);
@@ -184,6 +188,7 @@ function cargarModalProducto() {
         </div>
         <div id="div-select-productos">
                                 <select class="select-tipo-productos">
+                                    <option value="" selected hidden>Tipo:</option>
                                     <option value="comics">Comics</option>
                                     <option value="juegosMesa">Juegos de Mesa</option>
                                     <option value="juegosCartas">Juegos de Cartas</option>
@@ -228,6 +233,14 @@ function cargarModalProducto() {
       }
     }
   };
+
+  document
+    .querySelector(".select-tipo-productos")
+    .addEventListener("change", function (event) {
+      event.preventDefault();
+      tipo = this.value;
+    });
+
   document
     .querySelector("#btn-modificar-producto")
     .addEventListener("click", function (event) {
@@ -246,6 +259,7 @@ function cargarModalProducto() {
         nombre: nombre,
         precio: precio,
         imagen: imagen,
+        tipo: tipo,
       };
       console.log(producto);
       let body = JSON.stringify(producto);
@@ -288,6 +302,7 @@ function cargarModalProducto() {
         nombre: nombre,
         precio: precio,
         imagen: imagen,
+        tipo: tipo,
       };
       console.log(producto);
       let body = JSON.stringify(producto);
@@ -346,6 +361,7 @@ function cargarModalAgregarProducto() {
         </div>
         <div id="div-select-productos">
                                 <select class="select-tipo-productos">
+                                    <option value="" selected hidden>Tipo:</option>
                                     <option value="comics">Comics</option>
                                     <option value="juegosMesa">Juegos de Mesa</option>
                                     <option value="juegosCartas">Juegos de Cartas</option>
@@ -361,7 +377,6 @@ function cargarModalAgregarProducto() {
 
   var modal = document.querySelector("#myModal");
   var span = document.getElementsByClassName("close")[0];
-
   span.onclick = function () {
     modal.style.display = "none";
     //location.reload();
@@ -403,6 +418,8 @@ function cargarModal(nombre) {
       document.querySelector(
         "input[name='imagen-producto']"
       ).value = `${res[0].Imagen}`;
+
+      document.querySelector(".select-tipo-productos").value = `${res[0].Tipo}`;
     });
 }
 // <-- GENERAR MODAL EDITAR PRODUCTO
@@ -473,6 +490,7 @@ function añadirCesta() {
       crearCesta();
       cargarCesta();
       cargarClientes();
+      finalizarPedido();
     });
   });
 }
@@ -493,6 +511,7 @@ function eliminarCesta() {
       crearCesta();
       cargarCesta();
       cargarClientes();
+      finalizarPedido();
     });
   });
 }
@@ -518,13 +537,13 @@ function cargarClientes() {
       });
     });
 }
-let num2 = 0;
 function cargarCesta() {
   let arrayProductos = [];
   arrayProductosLocal = sessionStorage.getItem("arrayProductos");
   arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
   console.log(arrayProductosLocalParseada);
   arrayProductos = arrayProductosLocalParseada;
+  let num2 = 0;
 
   if (arrayProductos == null) {
     arrayProductos = [];
@@ -567,11 +586,13 @@ function finalizarPedido() {
     .querySelector(".btn-finalizar")
     .addEventListener("click", function (event) {
       event.preventDefault();
+      alert(111);
       let arrayProductos2 = [];
       arrayProductosLocal = sessionStorage.getItem("arrayProductos");
       arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
       console.log(arrayProductosLocalParseada);
       arrayProductos2 = arrayProductosLocalParseada;
+      console.log(arrayProductos2);
 
       if (arrayProductos2 == null) {
         arrayProductos2 = [];
@@ -637,6 +658,35 @@ function eliminarProdCesta() {
         crearCesta();
         cargarCesta();
         cargarClientes();
+        finalizarPedido();
       });
     });
 }
+function cambioTipo() {
+  document
+    .querySelector(".select-busqueda-tipos")
+    .addEventListener("change", function (event) {
+      event.preventDefault();
+      if (this.value == "comics") {
+        alert(1);
+      } else if (this.value == "juegosMesa") {
+        alert(2);
+      } else if (this.value == "juegosCartas") {
+        alert(3);
+      } else if (this.value == "snacks") {
+        alert(4);
+      } else {
+        alert(0);
+      }
+    });
+}
+function cambioTipoProducto() {
+  document
+    .querySelector(".select-tipo-productos")
+    .addEventListener("change", function (event) {
+      event.preventDefault();
+      tipo = this.value;
+      alert(tipo);
+    });
+}
+cambioTipo();

@@ -6,13 +6,15 @@ router.post("/", function (req, res) {
   let variablenombre = req.body.nombre;
   let variableprecio = req.body.precio;
   let variableimagen = req.body.imagen;
+  let variabletipo = req.body.tipo;
   let db = req.app.locals.db;
-
+  console.log("TIPO " + variabletipo);
   db.collection("productos").insertOne(
     {
       Nombre: variablenombre,
       Precio: variableprecio,
       Imagen: variableimagen,
+      Tipo: variabletipo,
     },
     function (err, respuesta) {
       if (err !== undefined) {
@@ -66,11 +68,13 @@ router.put("/", function (request, response) {
   let variablenombre = request.body.nombre;
   let variableprecio = request.body.precio;
   let variableurl = request.body.imagen;
+  let variabletipo = request.body.tipo;
   let db = request.app.locals.db;
   var newvalues = {
     $set: {
       Precio: variableprecio,
       Imagen: variableurl,
+      Tipo: variabletipo,
     },
   };
   db.collection("productos").updateOne(
@@ -128,9 +132,9 @@ router.get("/cargarClientes", function (request, response) {
 // MODAL DATOS DEL PRODUCTO CLICKADO  -->
 router.post("/venta", function (request, response) {
   let variablenombre = request.body.nombreCliente;
-  let variablearray = request.body.arrayProductos;
+  let variablearray = request.body.arrayProductos2;
   let db = request.app.locals.db;
-
+  console.log("AKI" + variablearray);
   db.collection("clientes")
     .find({ Nombre: variablenombre })
     .toArray(function (err, datos) {

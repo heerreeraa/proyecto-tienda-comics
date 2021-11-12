@@ -1028,9 +1028,11 @@ form label {
   border-radius: 5px;
   margin-top: 1%;
   height: 28%;
-  width: 100%;
+  width: 14%;
   text-align: center;
-  margin-bottom: 5%;
+}
+#div-select-productos {
+  display: flex;
 }
 /* <-- END PÁGINA LISTAS */
 
@@ -1047,7 +1049,7 @@ form label {
   font-size: 15px;
   border-radius: 15px;
 }
-#btn-insertar{
+#btn-insertar {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -1058,7 +1060,6 @@ form label {
   font-weight: bold;
   font-size: 15px;
   border-radius: 15px;
-
 }
 .btn-modificar {
   margin-top: 15px;
