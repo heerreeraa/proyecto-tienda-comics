@@ -45,6 +45,72 @@ router.get("/", function (request, response) {
 });
 // <-- MOSTRAR PRODUCTOS
 
+// MOSTRAR PRODUCTOS COMICS -->
+router.get("/comics", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("productos")
+    .find({ Tipo: "comics" })
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+        response.send({ mensaje: "error: " + err });
+      } else {
+        console.log(datos);
+        response.send(datos);
+      }
+    });
+});
+// <-- MOSTRAR PRODUCTOS COMICS
+
+// MOSTRAR PRODUCTOS JUEGOS DE MESA -->
+router.get("/juegosDeMesa", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("productos")
+    .find({ Tipo: "juegosMesa" })
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+        response.send({ mensaje: "error: " + err });
+      } else {
+        console.log(datos);
+        response.send(datos);
+      }
+    });
+});
+// <-- MOSTRAR PRODUCTOS JUEGOS DE MESA
+// MOSTRAR PRODUCTOS JUEGOS DE CARTAS -->
+router.get("/juegosDeCartas", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("productos")
+    .find({ Tipo: "juegosCartas" })
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+        response.send({ mensaje: "error: " + err });
+      } else {
+        console.log(datos);
+        response.send(datos);
+      }
+    });
+});
+// <-- MOSTRAR PRODUCTOS JUEGOS DE CARTAS
+// MOSTRAR PRODUCTOS SNACKS -->
+router.get("/snacks", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("productos")
+    .find({ Tipo: "snacks" })
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+        response.send({ mensaje: "error: " + err });
+      } else {
+        console.log(datos);
+        response.send(datos);
+      }
+    });
+});
+// <-- MOSTRAR PRODUCTOS SNACKS
+
 // MODAL DATOS DEL PRODUCTO CLICKADO  -->
 router.put("/buscarNombre", function (request, response) {
   let variablenombre = request.body.nombre;
