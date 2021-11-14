@@ -9,6 +9,12 @@ router.post("/", function (req, res) {
   let variabletipo = req.body.tipo;
   let db = req.app.locals.db;
   console.log("TIPO " + variabletipo);
+  db.collection("contador").insertOne(
+    {
+      Nombre: variablenombre,
+      cont: 0
+    }
+  )
   db.collection("productos").insertOne(
     {
       Nombre: variablenombre,

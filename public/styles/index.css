@@ -984,8 +984,16 @@ form label {
   flex-direction: column;
 }
 #div-porcentaje-ventas {
-  width: 45%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }
+#piechart_3d{
+  background-image: none !important;
+  /* width: 30%; */
+  /* background-color: #191a198a !important; */
+}
+
 .titulos-box-listas {
   margin-bottom: 1%;
 }

@@ -63,7 +63,7 @@ function mostrarVentas() {
 
 // MOSTRAR VENTAS POR CLIENTE EN LISTAS -->
 function contadorProductos() {
-  let arrayProductos;
+  let arrayProductos = [];
       fetch("/listas/contadorProductos", {
         method: "GET",
         headers: {
