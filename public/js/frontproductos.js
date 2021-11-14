@@ -842,6 +842,19 @@ function finalizarPedido() {
         .then(function (res) {
           console.log(res);
         });
+      fetch("/contador", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          console.log("info que va a contador--> " + res);
+        });
       arrayProductos = [];
       sessionStorage.removeItem("arrayProductos");
       arrayObjetoFotos = JSON.stringify(arrayProductos);
