@@ -820,50 +820,54 @@ function finalizarPedido() {
       var nombreCliente = document.querySelector(
         ".select-clientes-ventas"
       ).value;
-      let venta = {
-        nombreCliente: nombreCliente,
-        arrayProductos2: arrayProductos2,
-      };
-      console.log(venta);
-      alert(venta);
-      let body = JSON.stringify(venta);
+      if (nombreCliente == "default") {
+        alert("Selecciona un cliente!");
+      } else {
+        let venta = {
+          nombreCliente: nombreCliente,
+          arrayProductos2: arrayProductos2,
+        };
+        console.log(venta);
+        alert(venta);
+        let body = JSON.stringify(venta);
 
-      fetch("/productos/venta", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      })
-        .then(function (response) {
-          return response.json();
+        fetch("/productos/venta", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body,
         })
-        .then(function (res) {
-          console.log(res);
-        });
-      fetch("/productos/contador", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      })
-        .then(function (response) {
-          return response.json();
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (res) {
+            console.log(res);
+          });
+        fetch("/productos/contador", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body,
         })
-        .then(function (res) {
-          console.log("info que va a contador--> " + res);
-        });
-      arrayProductos = [];
-      sessionStorage.removeItem("arrayProductos");
-      arrayObjetoFotos = JSON.stringify(arrayProductos);
-      sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
-      console.log(sessionStorage.getItem("arrayProductos"));
-      console.log(arrayProductos);
-      vaciarCesta();
-      crearCesta();
-      cargarCesta();
-      cargarClientes();
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (res) {
+            console.log("info que va a contador--> " + res);
+          });
+        arrayProductos = [];
+        sessionStorage.removeItem("arrayProductos");
+        arrayObjetoFotos = JSON.stringify(arrayProductos);
+        sessionStorage.setItem("arrayProductos", arrayObjetoFotos);
+        console.log(sessionStorage.getItem("arrayProductos"));
+        console.log(arrayProductos);
+        vaciarCesta();
+        crearCesta();
+        cargarCesta();
+        cargarClientes();
+      }
     });
 }
 function eliminarProdCesta() {
