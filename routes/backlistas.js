@@ -53,25 +53,32 @@ router.post("/mostrarVentas", function (request, response) {
 });
 module.exports = router;
 
-// router.get("/contadorProductos", function (request, response) {
-//   let db = request.app.locals.db;
-//   let arrayProductos = [];
-//   db.collection("productos")
-//     .find()
-//     .toArray(function (err, datos) {
-//       if (err != undefined) {
-//         // console.log(err);
-//       } else {
-//         db.collection("contador").insertOne();
-//         for (i = 0; i < datos.length; i++) {
-//           const nombreProducto = datos[i].Nombre;
-//           arrayProductos.push(nombreProducto);
-//           for (i = 0; i < arrayProductos.length; i++) {}
-//         }
+router.get("/masVendidos", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("contador")
+    .find()
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+      } else {
+        console.log(datos);
+        response.send(datos);
+     }
+    });
+});
 
-//         console.log({ arrayProductos });
-//         // console.log(arrayProductos);
-//       }
-//     });
-// });
+router.get("/menosVendidos", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("contador")
+    .find()
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+      } else {
+        console.log(datos);
+        response.send(datos);
+     }
+    });
+});
+
 module.exports = router;
