@@ -72,18 +72,20 @@ fetch("/listas/masVendido", {
   return response.json()
 }).then(function (res) {
   let arrayLista = [];
-  let masVendido 
+  let masVendido;
+  let prodmasVendido;
   for(e = 0; i<res.length; i++){
-    arrayLista.push(datos[e].cont);
+    arrayLista.push(res[e].cont);
     masVendido = parseInt(Math.max(arrayLista));
-    const pmasVendido = document.createElement("p");
-    const numMasVendido = document.createTextNode(masVendido);
-    pmasVendido.appendChild(numMasVendido);
-    let divMasVendido = document.querySelector("#div-mas-vendidos");
-    divMasVendido.appendChild(pmasVendido);
+    if(res[e].cont === masVendido)
+      prodmasVendido = (res[e].Nombre+" "+res[e].cont)
   }
+  const pmasVendido = document.createElement("p");
+    const nummasVendido = document.createTextNode(prodmasVendido);
+    pmasVendido.appendChild(nummasVendido);
+    let divmasVendido = document.querySelector("#div-mas-vendidos");
+    divmasVendido.appendChild(pmasVendido);
   console.log(masVendido);
-
 })
 
 fetch("/listas/menosVendido", {
@@ -95,13 +97,16 @@ fetch("/listas/menosVendido", {
   return response.json()
 }).then(function (res) {
   let arrayLista = [];
-  let menosVendido 
+  let menosVendido;
+  let prodMenosVendido;
   for(e = 0; i<res.length; i++){
     arrayLista.push(res[e].cont);
     menosVendido = parseInt(Math.max(arrayLista));
+    if(res[e].cont === masVendido)
+      prodMenosVendido = (res[e].Nombre+" "+res[e].cont)
   }
   const pMenosVendido = document.createElement("p");
-    const numMenosVendido = document.createTextNode(menosVendido);
+    const numMenosVendido = document.createTextNode(prodMenosVendido);
     pMenosVendido.appendChild(numMenosVendido);
     let divMenosVendido = document.querySelector("#div-menos-vendidos");
     divMenosVendido.appendChild(pMenosVendido);
