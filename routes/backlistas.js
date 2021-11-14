@@ -28,7 +28,6 @@ router.post("/mostrarVentas", function (request, response) {
         // console.log(err);
         response.send({ mensaje: "error: " + err });
       } else {
-
         let dniventa = datos[0].DNI;
         // console.log(dniventa);
         // BUSCAR DNI EN VENTAS
@@ -40,8 +39,9 @@ router.post("/mostrarVentas", function (request, response) {
               response.send({ mensaje: "error: " + err });
             } else {
               if (vent.length === 0) {
-                response.send("El cliente seleccionado no ha realizado ninguna venta (aún ;)");
-
+                response.send(
+                  "El cliente seleccionado no ha realizado ninguna venta (aún ;)"
+                );
               } else {
                 // console.log(vent);
                 response.send(vent);
@@ -62,23 +62,16 @@ module.exports = router;
 //       if (err != undefined) {
 //         // console.log(err);
 //       } else {
-//         db.collection("contador").insertOne(
-          
-//         ) 
+//         db.collection("contador").insertOne();
 //         for (i = 0; i < datos.length; i++) {
 //           const nombreProducto = datos[i].Nombre;
 //           arrayProductos.push(nombreProducto);
-//           for(i=0; i<arrayProductos.length; i++){
-//           }
+//           for (i = 0; i < arrayProductos.length; i++) {}
 //         }
-      
-        
-          
-          
-//             console.log({arrayProductos});
-//           // console.log(arrayProductos);
-//         }
+
+//         console.log({ arrayProductos });
+//         // console.log(arrayProductos);
+//       }
 //     });
 // });
 module.exports = router;
-
