@@ -9,12 +9,10 @@ router.post("/", function (req, res) {
   let variabletipo = req.body.tipo;
   let db = req.app.locals.db;
   console.log("TIPO " + variabletipo);
-  db.collection("contador").insertOne(
-    {
-      Nombre: variablenombre,
-      cont: 0
-    }
-  )
+  db.collection("contador").insertOne({
+    Nombre: variablenombre,
+    cont: 0,
+  });
   db.collection("productos").insertOne(
     {
       Nombre: variablenombre,
@@ -208,6 +206,7 @@ router.post("/venta", function (request, response) {
   let variablearray = request.body.arrayProductos2;
   let db = request.app.locals.db;
   console.log("AKI" + variablearray);
+  console.log("AKI TAMBIEN" + variablenombre);
   db.collection("clientes")
     .find({ Nombre: variablenombre })
     .toArray(function (err, datos) {
@@ -217,6 +216,7 @@ router.post("/venta", function (request, response) {
       } else {
         console.log(datos);
         // response.send(datos);
+        console.log("EL DNI PA " + datos[0].DNI);
         let dni = datos[0].DNI;
         db.collection("ventas").insertOne(
           {
@@ -240,27 +240,44 @@ router.post("/venta", function (request, response) {
 
 // P
 router.put("/contador", function (request, response) {
-  let variablenombre = request.body.nombre;
+  let variablenombre = request.body.arrayProductos2;
+  console.log("OLA" + variablenombre);
   let db = request.app.locals.db;
-  var newvalues = {
-    $set: {
-      cont: +1,
-    },
-  };
-  db.collection("productos").updateOne(
-    {
-      Nombre: variablenombre,
-    },
-    newvalues,
-    function (err, respuesta) {
-      if (err !== undefined) {
-        console.log(err), res.send({ mensaje: "Ha habido un error. " + err });
-      } else {
-        console.log(respuesta);
-        console.log("Venta añadida al contador");
-      }
-    }
-  );
+
+  for (let c = 0; c < variablenombre.length; c++) {
+    console.log(variablenombre[c]);
+    db.collection("contador")
+      .find({ Nombre: variablenombre[c] })
+      .toArray(function (err, datos) {
+        if (err != undefined) {
+          console.log(err);
+          response.send({ mensaje: "error: " + err });
+        } else {
+          console.log("CONT" + datos[0].cont);
+          let suma = datos[0].cont + 1;
+          var newvalues = {
+            $set: {
+              cont: suma,
+            },
+          };
+          db.collection("contador").updateOne(
+            {
+              Nombre: variablenombre[c],
+            },
+            newvalues,
+            function (err, respuesta) {
+              if (err !== undefined) {
+                console.log(err),
+                  res.send({ mensaje: "Ha habido un error. " + err });
+              } else {
+                console.log(respuesta);
+                console.log("Venta añadida al contador");
+              }
+            }
+          );
+        }
+      });
+  }
 });
-// 
+//
 module.exports = router;

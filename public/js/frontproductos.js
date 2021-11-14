@@ -806,7 +806,6 @@ function finalizarPedido() {
     .querySelector(".btn-finalizar")
     .addEventListener("click", function (event) {
       event.preventDefault();
-      alert(111);
       let arrayProductos2 = [];
       arrayProductosLocal = sessionStorage.getItem("arrayProductos");
       arrayProductosLocalParseada = JSON.parse(arrayProductosLocal);
@@ -842,7 +841,7 @@ function finalizarPedido() {
         .then(function (res) {
           console.log(res);
         });
-      fetch("/contador", {
+      fetch("/productos/contador", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
