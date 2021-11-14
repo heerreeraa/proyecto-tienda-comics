@@ -101,7 +101,7 @@ fetch("/listas/menosVendido", {
   let prodMenosVendido;
   for(e = 0; i<res.length; i++){
     arrayLista.push(res[e].cont);
-    menosVendido = parseInt(Math.max(arrayLista));
+    menosVendido = parseInt(Math.min(arrayLista));
     if(res[e].cont === masVendido)
       prodMenosVendido = (res[e].Nombre+" "+res[e].cont)
   }

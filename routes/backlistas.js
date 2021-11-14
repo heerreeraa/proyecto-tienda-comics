@@ -81,4 +81,18 @@ router.get("/menosVendidos", function (request, response) {
     });
 });
 
+router.get("/estadisticas", function (request, response) {
+  let db = request.app.locals.db;
+  db.collection("contador")
+    .find()
+    .toArray(function (err, datos) {
+      if (err != undefined) {
+        console.log(err);
+      } else {
+        console.log(datos);
+        response.send(datos);
+     }
+    });
+});
+
 module.exports = router;
