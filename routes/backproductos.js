@@ -237,4 +237,30 @@ router.post("/venta", function (request, response) {
     });
 });
 // <-- MODAL DATOS DEL PRODUCTO CLICKADO
+
+// P
+router.put("/contador", function (request, response) {
+  let variablenombre = request.body.nombre;
+  let db = request.app.locals.db;
+  var newvalues = {
+    $set: {
+      cont: +1,
+    },
+  };
+  db.collection("productos").updateOne(
+    {
+      Nombre: variablenombre,
+    },
+    newvalues,
+    function (err, respuesta) {
+      if (err !== undefined) {
+        console.log(err), res.send({ mensaje: "Ha habido un error. " + err });
+      } else {
+        console.log(respuesta);
+        console.log("Venta añadida al contador");
+      }
+    }
+  );
+});
+// 
 module.exports = router;
