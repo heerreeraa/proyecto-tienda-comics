@@ -988,6 +988,18 @@ form label {
   display: flex;
   flex-direction: column;
 }
+#div-compras-usuario{
+  width: 90%;
+}
+#div-mas-menos{
+  width: 90%;
+}
+#div-mas-vendidos{
+  width: 65%
+}
+#div-menos-vendidos{
+  width: 65%
+}
 #piechart_3d{
   background-image: none !important;
   /* width: 30%; */

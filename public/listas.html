@@ -51,9 +51,15 @@
                 <div id="div-mas-menos">
                     <div class="box-listas" id="div-mas-vendidos">
                         <h2 class="titulos-box-listas">PRODUCTOS MÁS VENDIDOS</h2>
+                        <p>1. Pelotazos</p>
+                        <p>2. Uno</p>
+                        <p>3. InitialDvol01</p>
                     </div>
                     <div class="box-listas" id="div-menos-vendidos">
                         <h2 class="titulos-box-listas">PRODUCTOS MENOS VENDIDOS</h2>
+                        <p>1. InitialDvol04</p>
+                        <p>2. Parchis</p>
+                        <p>3. Baraja Española</p>
                     </div>
                 </div>
                 <div class="box-listas" id="div-porcentaje-ventas">
@@ -139,14 +145,32 @@
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
+
+            fetch("/listas/estadisticas", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }).then(function (response) {
+                return response.json()
+            }).then(function (res) {
+                arrayProductos = res;
+            })
+
+            let arrayProductos;
+
             var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
+                ['Nombre', 'Ventas'],
+                ['Pelotazos', 11],
+                ['Aspitos', 2],
+                ['InitialDvol01', 2],
+                ['Monopoly', 2],
+                ['Uno', 7]
             ]);
+
+            // var data = google.visualization.arrayToDataTable(
+            //     [arrayProductos]
+            // );
 
             var options = {
                 title: 'Porcentaje de ventas de Anime San Francisco:',
@@ -156,10 +180,6 @@
             var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
             chart.draw(data, options);
         }
-
-        // $(window).resize(function () {
-        //     drawChart();
-        // });
     </script>
 </body>
 <script>
